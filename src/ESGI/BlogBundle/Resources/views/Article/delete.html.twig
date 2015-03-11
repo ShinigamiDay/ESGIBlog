@@ -4,4 +4,20 @@
 
 {% block body %}
 <h1>Welcome to the Article:delete page</h1>
+
+    <h2>{{'Supprimer'|trans}} {{ article.title }}</h2>
+
+    <p>
+        {% trans %}Etes-vous certain de vouloir supprimer l'article {% endtrans %} "{{ article.title }}" ?
+    </p>
+
+    {# On met l'id de l'article dans la route de l'action du formulaire #}
+    <form action="{{ path('delete', {'id': article.id}) }}" method="post">
+        <a href="{{ path('see', {'id': article.id}) }}" class="btn">
+            <i class="icon-chevron-left"></i>
+            {{'Retour aux articles'|trans}}
+        </a>
+        <input type="submit" value="Supprimer" class="btn btn-danger" />
+        {{ form_rest(form) }}
+    </form>
 {% endblock %}

@@ -31,8 +31,8 @@ class ArticleController extends Controller
             if ($form->isValid()) {
                 // On enregistre l'objet en base de donnée
                 $em = $this->getDoctrine()->getManager();
-                //$user = $this->container->get('security.context')->getToken()->getUser();
-                //$content->setUser($user);
+                $user = $this->container->get('security.context')->getToken()->getUser();
+                $article->setUser($user);
                 $em->persist($article);
                 $em->flush();
 
@@ -58,10 +58,34 @@ class ArticleController extends Controller
         ));
     }
 
-    public function deleteAction()
+    public function deleteAction(Article $article)
     {
+
+        $form = $this->createFormBuilder()->getForm();
+
+        $request = $this->get('request');
+        if ($request->getMethod() == 'POST') {
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+                // On supprime l'article
+                $em = $this->getDoctrine()->getManager();
+                $user = $this->container->get('security.context')->getToken()->getUser();
+                $article->setUser($user);
+                $em->remove($article);
+                $em->flush();
+
+                // On définit un message flash
+                $this->get('session')->getFlashBag()->add('info', 'Article bien supprimé');
+
+                // Puis on redirige vers les articles
+                return $this->redirect($this->generateUrl('articles'));
+            }
+        }
+
         return $this->render('ESGIBlogBundle:Article:delete.html.twig', array(
-                // ...
+                'article' => $article,
+                'form'    => $form->createView()
             ));
     }
 
@@ -97,8 +121,8 @@ class ArticleController extends Controller
             if ($form->isValid()) {
                 // On enregistre l'objet en base de donnée
                 $em = $this->getDoctrine()->getManager();
-                //$user = $this->container->get('security.context')->getToken()->getUser();
-                //$article->setUser($user);
+                $user = $this->container->get('security.context')->getToken()->getUser();
+                $article->setUser($user);
                 $em->persist($article);
                 $em->flush();
 

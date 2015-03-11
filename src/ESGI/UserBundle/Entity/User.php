@@ -31,7 +31,7 @@ class User extends BaseUser
 
     /**
      * @var Category
-     * @ORM\ManyToMany(targetEntity="ESGI\BlogBundle\Entity\Category", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="ESGI\BlogBundle\Entity\Category", mappedBy="user")
      */
     private $categories;
 
@@ -84,6 +84,7 @@ class User extends BaseUser
     {
         return $this->articles;
     }
+
 
     /**
      * Add categories
