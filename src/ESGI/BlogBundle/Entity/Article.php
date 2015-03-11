@@ -58,13 +58,13 @@ class Article
 
     /**
      * @ORM\ManyToOne(targetEntity="ESGI\UserBundle\Entity\User", cascade={"persist"}, inversedBy="articles")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $user;
 
     /**
      * @var Image
-     * @ORM\OneToOne(targetEntity="ESGI\BlogBundle\Entity\Image", cascade={"persist", "remove"}, inversedBy="article")
+     * @ORM\ManyToOne(targetEntity="ESGI\BlogBundle\Entity\Image", cascade={"persist", "remove"}, inversedBy="articles")
      * @Assert\Valid()
      */
     private $image;

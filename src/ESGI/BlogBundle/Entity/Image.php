@@ -40,10 +40,10 @@ class Image
 
     /**
      * @var Article
-     * @ORM\OneToOne(targetEntity="ESGI\BlogBundle\Entity\Article", cascade={"persist"}, mappedBy="image")
+     * @ORM\OneToMany(targetEntity="ESGI\BlogBundle\Entity\Article", cascade={"persist"}, mappedBy="image")
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
      */
-    private $article;
+    private $articles;
 
     /**
      * @Assert\File(maxSize="6000000")
@@ -107,29 +107,6 @@ class Image
     public function getAlt()
     {
         return $this->alt;
-    }
-
-    /**
-     * Set article
-     *
-     * @param \ESGI\BlogBundle\Entity\Article $article
-     * @return Image
-     */
-    public function setArticle(\ESGI\BlogBundle\Entity\Article $article = null)
-    {
-        $this->article = $article;
-
-        return $this;
-    }
-
-    /**
-     * Get article
-     *
-     * @return \ESGI\BlogBundle\Entity\Article 
-     */
-    public function getArticle()
-    {
-        return $this->article;
     }
 
     /***********/
@@ -233,5 +210,45 @@ class Image
     public function getWebPath()
     {
         return $this->getUploadDir().'/'.$this->getPath();
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add articles
+     *
+     * @param \ESGI\BlogBundle\Entity\Article $articles
+     * @return Image
+     */
+    public function addArticle(\ESGI\BlogBundle\Entity\Article $articles)
+    {
+        $this->articles[] = $articles;
+
+        return $this;
+    }
+
+    /**
+     * Remove articles
+     *
+     * @param \ESGI\BlogBundle\Entity\Article $articles
+     */
+    public function removeArticle(\ESGI\BlogBundle\Entity\Article $articles)
+    {
+        $this->articles->removeElement($articles);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getArticles()
+    {
+        return $this->articles;
     }
 }

@@ -1,0 +1,14 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+<h3>{{'Formulaire Catégorie'|trans}}</h3>
+
+{# Ici on laisse vide la vue pour l'instant, on la comblera plus tard lorsqu'on saura afficher un formulaire #}
+<div class="">
+    <form method="post" role="form">
+        {# {% form_theme form 'TellmediaTemplateBundle:Form:fields.html.twig' %} #}
+
+        {# Reste du formulaire #}
+        {{ form_widget(form) }}
+        <br>
+        <input type="submit" class="btn btn-success" />
+    </form>
+</div>
