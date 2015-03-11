@@ -22,6 +22,10 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new ESGI\BlogBundle\ESGIBlogBundle(),
             new ESGI\UserBundle\ESGIUserBundle(),
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
