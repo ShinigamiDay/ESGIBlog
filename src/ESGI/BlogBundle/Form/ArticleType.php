@@ -18,7 +18,6 @@ class ArticleType extends AbstractType
             ->add('title')
             ->add('body')
             ->add('isPublished',  'checkbox', array(  'label'  => 'Publier'))
-            ->add('author')
             ->add('image', new ImageType())
             ->add('category', 'entity', array(
                                                 'class'    => 'ESGIBlogBundle:Category',

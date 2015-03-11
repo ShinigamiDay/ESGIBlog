@@ -34,8 +34,15 @@ class Category
      * @var Articles
      * @ORM\OneToMany(targetEntity="ESGI\BlogBundle\Entity\Article", cascade={"persist"}, mappedBy="category")
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id", nullable=false)
-     */
+    */
     private $articles;
+
+    /**
+     * @var User
+     * @ORM\ManyToMany(targetEntity="ESGI\UserBundle\Entity\User", cascade={"persist"}, mappedBy="category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     */
+    private $user;
 
     public function __construct()
     {
@@ -107,5 +114,38 @@ class Category
     public function getArticles()
     {
         return $this->articles;
+    }
+
+    /**
+     * Add user
+     *
+     * @param \ESGI\UserBundle\Entity\User $user
+     * @return Category
+     */
+    public function addUser(\ESGI\UserBundle\Entity\User $user)
+    {
+        $this->user[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \ESGI\UserBundle\Entity\User $user
+     */
+    public function removeUser(\ESGI\UserBundle\Entity\User $user)
+    {
+        $this->user->removeElement($user);
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

@@ -57,11 +57,10 @@ class Article
     private $updated;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="author", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="ESGI\UserBundle\Entity\User", cascade={"persist"}, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $author;
+    private $user;
 
     /**
      * @var Image
@@ -166,29 +165,6 @@ class Article
     public function getIsPublished()
     {
         return $this->isPublished;
-    }
-
-    /**
-     * Set author
-     *
-     * @param string $author
-     * @return Article
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * Get author
-     *
-     * @return string 
-     */
-    public function getAuthor()
-    {
-        return $this->author;
     }
 
     /**
@@ -304,5 +280,28 @@ class Article
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \ESGI\UserBundle\Entity\User $user
+     * @return Article
+     */
+    public function setUser(\ESGI\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \ESGI\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
