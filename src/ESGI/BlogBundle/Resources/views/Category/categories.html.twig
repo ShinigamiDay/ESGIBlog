@@ -1,0 +1,14 @@
+{% extends 'ESGIBlogBundle::layout.html.twig' %}
+{% block title %}ESGIBlogBundle:Category:getCategories{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Category:getCategories page</h1>
+    <h1>{{ 'Vos catégories'|trans }}</h1>
+    <div class="row">
+        {% for category in categories %}
+            <h2>{{ category.name }}</h2>
+        {% else %}
+            <p>{{'Pas de catégorie disponible.'|trans}}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

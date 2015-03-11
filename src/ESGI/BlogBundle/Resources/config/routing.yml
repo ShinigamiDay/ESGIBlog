@@ -26,3 +26,15 @@ articles:
     defaults: { _controller: ESGIBlogBundle:Article:articles, page: 1 }
     requirements:
         page: \d*
+
+get_categories:
+    path:     /categories
+    defaults: { _controller: ESGIBlogBundle:Category:getCategories }
+
+post_categories:
+    path:     /add-category
+    defaults: { _controller: ESGIBlogBundle:Category:postCategories }
+
+put_category:
+    path:     /putCategory
+    defaults: { _controller: ESGIBlogBundle:Category:putCategory }
