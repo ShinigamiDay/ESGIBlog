@@ -1,0 +1,28 @@
+esgi_blog_homepage:
+    path:     /welcome/{name}
+    defaults: { _controller: ESGIBlogBundle:Default:index }
+esgi_blog_article_see:
+    path:     /
+
+add:
+    path:     /add
+    defaults: { _controller: ESGIBlogBundle:Article:add }
+edit:
+    path:     /edit
+    defaults: { _controller: ESGIBlogBundle:Article:edit }
+
+see:
+    path:     /article/{id}
+    defaults: { _controller: ESGIBlogBundle:Article:see }
+    requirements:
+        id: \d+
+
+delete:
+    path:     /delete
+    defaults: { _controller: ESGIBlogBundle:Article:delete }
+
+articles:
+    path:     /articles/{page}
+    defaults: { _controller: ESGIBlogBundle:Article:articles, page: 1 }
+    requirements:
+        page: \d*

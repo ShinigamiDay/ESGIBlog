@@ -1,0 +1,7 @@
+services:
+#    esgi_blog.example:
+#        class: ESGI\BlogBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+#        
+     esgi_computer:
+         class: ESGI\BlogBundle\Service\Computer
