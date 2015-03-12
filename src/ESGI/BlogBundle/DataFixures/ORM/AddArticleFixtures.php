@@ -1,39 +1,25 @@
 <?php
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+namespace ESGI\BlogBundle\DataFixtures\ORM;
+
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use ESGI\BlogBundle\Entity\Article;
-use ESGI\UserBundle\Entity\User;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 
-class AddArticleFixtures implements FixtureInterface
+class AddArticleFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
     function load(ObjectManager $manager)
     {
         $i = 1;
         $id = 10;
 
-        #region essaiGetUser
-        //$repository = $this->getDoctrine()
-//                ->getRepository('AcmeStoreBundle:Product');
-//            $user = $repository->find($id);
-//            $this->container->get('security.context')->getToken()->getUser();
-        #endregion
-
-        /* Création d'un user obligatoire qui va être lié aux articles */
-        $user = new User();
-        $user->setUsername('User name n°');
-        $user->setUsernameCanonical('nikosFram');
-        $user->setEmail('nicolas.framery.@gmail.com');
-        $user->setEmailCanonical('nicolas.framery.@gmail.com');
-        $user->setEnabled(true);
-        $user->setPassword('nicolas');
-        $user->setLocked(false);
-        $manager->persist($user);
-        $manager->flush();
-
         while ($i <= 10) {
+            $rand = rand(1, 10);
             $article = new Article();
-            $article->setUser($user);
+            $article->setUser(
+                $this->getReference('user-' . $rand)
+            );
             $article->setBody("Article n°" . $i);
             $article->setCategory(null);
             $article->setIsPublished(true);
@@ -44,5 +30,10 @@ class AddArticleFixtures implements FixtureInterface
         }
 
         $manager->flush();
+    }
+
+    public function getOrder()
+    {
+        return 3;
     }
 }
