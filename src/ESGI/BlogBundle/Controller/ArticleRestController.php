@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use JMS\SerializerBundle\JMSSerializerBundle;
 use ESGI\BlogBundle\Entity\Article;
 
-class ArticleRestController extends Controller
+class ArticleRestController extends FOSRestController
 {
 
     /**
@@ -65,7 +65,7 @@ class ArticleRestController extends Controller
                 $em->persist($article);
                 $em->flush();
                 $code = 200;
-                
+
             } else { $code = 400; }
         } else { $code = 400; }
 
