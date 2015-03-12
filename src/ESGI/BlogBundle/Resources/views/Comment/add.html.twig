@@ -1,0 +1,7 @@
+{% extends 'ESGIBlogBundle::layout.html.twig' %}
+{% block title %}{{ 'Commentaire'|trans }}{% endblock %}
+
+{% block blog_body %}
+    <h1>Welcome to the Comment form page</h1>
+    {% include "ESGIBlogBundle:Comment:form.html.twig" %}
+{% endblock %}

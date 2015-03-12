@@ -1,0 +1,12 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+<h3>{{'Ajouter un Commentaire'|trans}}</h3>
+
+<div class="">
+    <form method="post" role="form">
+
+        {# Reste du formulaire #}
+        {{ form_widget(form) }}
+        <br>
+        <input type="submit" class="btn btn-success" />
+    </form>
+</div>

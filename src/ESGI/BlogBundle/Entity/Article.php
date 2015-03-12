@@ -81,10 +81,23 @@ class Article
      */
     private $slug;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isCommented", type="boolean")
+     */
+    private $isCommented;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ESGI\BlogBundle\Entity\Comment", cascade={"persist", "remove"}, mappedBy="article")
+     */
+    private $comments;
+
     public function __construct()
     {
         $this->dateUpdate = new \Datetime();
         $this->isPublished = true;
+        $this->isCommented = true;
     }
 
 
@@ -303,5 +316,61 @@ class Article
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set isCommented
+     *
+     * @param boolean $isCommented
+     * @return Article
+     */
+    public function setIsCommented($isCommented)
+    {
+        $this->isCommented = $isCommented;
+
+        return $this;
+    }
+
+    /**
+     * Get isCommented
+     *
+     * @return boolean 
+     */
+    public function getIsCommented()
+    {
+        return $this->isCommented;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \ESGI\ESGIBlogBundle\Entity\Comment $comments
+     * @return Article
+     */
+    public function addComment(\ESGI\ESGIBlogBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \ESGI\ESGIBlogBundle\Entity\Comment $comments
+     */
+    public function removeComment(\ESGI\ESGIBlogBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

@@ -38,3 +38,15 @@ post_categories:
 put_category:
     path:     /putCategory
     defaults: { _controller: ESGIBlogBundle:Category:putCategory }
+
+add_comment:
+    path:    /add-comment/{id}
+    defaults: { _controller: ESGIBlogBundle:Comment:postComments }
+    requirements:
+        id: \d+
+
+edit_comment:
+    path:    /edit-comment/{id}
+    defaults: { _controller: ESGIBlogBundle:Comment:putComment }
+    requirements:
+        id: \d+

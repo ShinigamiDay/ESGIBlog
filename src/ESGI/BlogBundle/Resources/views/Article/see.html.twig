@@ -8,4 +8,28 @@
     <h1>{{ article.title }}</h1>
     <p>{{ article.body }}</p>
     <i>{{ 'Article rédigé par'|trans }}  - {{ article.updated|date('d-M-y') }}</i>
+
+    {% if article.isCommented == true %}
+        <p><a href="{{ path('add_comment', {'id': article.id}) }}" class="btn btn-danger" role="button">{{'Ajouter un commentaire'|trans}}</a></p>
+    {% endif %}
+
+{% for comment in article.comments %}
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <i class="glyphicon glyphicon-comment"></i>
+                <h3 class="box-title">{{ 'Commentaires'|trans }}</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <div class="callout callout-info">
+                    <h4>{{ comment.user.username }}</h4>
+                    <p>{{ comment.content }}</p>
+                    <p><i>{{'Le'|trans}} {{ comment.updated|date('d/m/Y') }}</i></p>
+                </div>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+    {% else %}
+        <p>{% trans %} Pas de commentaires. {% endtrans %}</p>
+    {% endfor %}
 {% endblock %}

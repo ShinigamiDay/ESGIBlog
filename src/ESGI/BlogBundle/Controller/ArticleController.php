@@ -130,6 +130,12 @@ class ArticleController extends Controller
                 return $this->redirect($this->generateUrl('see', array('id' => $article->getId())));
             }
         }
+
+        return $this->render('ESGIBlogBundle:Article:edit.html.twig', array(
+            'article' => $article,
+            'form'    => $form->createView()
+        ));
+
     }
 
 }
