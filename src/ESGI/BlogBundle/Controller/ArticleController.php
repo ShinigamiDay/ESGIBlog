@@ -2,6 +2,8 @@
 
 namespace ESGI\BlogBundle\Controller;
 
+use ESGI\BlogBundle\Entity\SuggestArticle;
+use ESGI\BlogBundle\Form\SuggestArticleType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use ESGI\BlogBundle\Entity\Article;
@@ -103,6 +105,56 @@ class ArticleController extends Controller
             'page' => $page,
             'numberPage' => ceil(count($articles) / $numberContentsByPage)
             ));
+    }
+
+    public function suggestAction($page)
+    {
+        $numberContentsByPage = 9;
+        // Pour récupérer la liste de tous les articles : on utilise findAll()
+        // Sinon, on créer une pagination avec un nombre de contenu constant pour chaque page.
+        $articles = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ESGIBlogBundle:SuggestArticle')
+            ->getArticlesPaginator($numberContentsByPage, $page);
+
+
+        return $this->render('ESGIBlogBundle:Article:suggest.html.twig', array(
+            'articles' => $articles,
+            'page' => $page,
+            'numberPage' => ceil(count($articles) / $numberContentsByPage)
+        ));
+    }
+
+
+    public function suggestArticleAction()
+    {
+        $suggestArticle = new SuggestArticle();
+
+        // On crée le FormBuilder grâce à la méthode du contrôleur
+        $form = $this->createForm(new SuggestArticleType(), $suggestArticle);
+
+        $request = $this->get('request');
+
+        // On vérifie qu'elle est de type POST
+        if ($request->getMethod() == 'POST') {
+            // On fait le lien Requête <-> Formulaire
+            $form->handleRequest($request);
+
+            // Vérifier si les entrées sont correctes
+            if ($form->isValid()) {
+                // On enregistre l'objet en base de donnée
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($suggestArticle);
+                $em->flush();
+
+                // On redirige vers la page de visualisation du contenu nouvellement créé
+                return $this->redirect($this->generateUrl('suggest', array('id' => $suggestArticle->getId())));
+            }
+        }
+
+        return $this->render('ESGIBlogBundle:Article:addSuggestArticle.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     public function editAction(Article $article)

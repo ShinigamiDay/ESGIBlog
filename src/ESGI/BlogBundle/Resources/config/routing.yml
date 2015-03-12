@@ -10,6 +10,9 @@ add:
 edit:
     path:     /edit
     defaults: { _controller: ESGIBlogBundle:Article:edit }
+suggestArticle:
+    path:     /suggestArticle
+    defaults: { _controller: ESGIBlogBundle:Article:suggestArticle }
 
 see:
     path:     /article/{id}
@@ -26,7 +29,11 @@ articles:
     defaults: { _controller: ESGIBlogBundle:Article:articles, page: 1 }
     requirements:
         page: \d*
-
+suggest:
+    path:     /suggest/{page}
+    defaults: { _controller: ESGIBlogBundle:Article:suggest, page: 1 }
+    requirements:
+        page: \d*
 get_categories:
     path:     /categories
     defaults: { _controller: ESGIBlogBundle:Category:getCategories }

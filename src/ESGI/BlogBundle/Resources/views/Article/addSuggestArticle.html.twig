@@ -1,0 +1,9 @@
+{% extends 'ESGIBlogBundle::layout.html.twig' %}
+
+{% block title %}{% trans %}Ajouter un article {% endtrans %}{% endblock %}
+
+{% block blog_body %}
+    <h1>Suggérer un article</h1>
+    {% include "ESGIBlogBundle:Article:form.html.twig" %}
+
+{% endblock %}
