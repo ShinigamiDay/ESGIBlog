@@ -194,7 +194,7 @@ class Article
      * Set category
      *
      * @param \ESGI\BlogBundle\Entity\Category $category
-     * @return Article
+     * @return Category
      */
     public function setCategory(\ESGI\BlogBundle\Entity\Category $category = null)
     {
