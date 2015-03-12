@@ -31,7 +31,7 @@ class CommentController extends Controller
                 $article = $this->getDoctrine()
                                 ->getRepository('ESGIBlogBundle:Article')
                                 ->find($id);
-                
+
                 // On ajoute le commentaire seulement si c'est autorisé.
                 if ($article->getIsCommented())
                 {

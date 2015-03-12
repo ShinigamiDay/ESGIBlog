@@ -9,8 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ESGI\BlogBundle\Entity\Article;
 use ESGI\BlogBundle\Form\ArticleType;
 use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\Controller\FOSRestController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use JMS\SerializerBundle\JMSSerializerBundle;
 
-class ArticleController extends Controller
+class ArticleController extends FOSRestController
 {
     public function addAction()
     {
@@ -89,9 +92,14 @@ class ArticleController extends Controller
             ));
     }
 
+    /**
+     * Fetch all articles published with pagination.
+     * @param $page
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function articlesAction($page)
     {
-        $numberContentsByPage = 9;
+        $numberContentsByPage = 3;
         // Pour récupérer la liste de tous les articles : on utilise findAll()
         // Sinon, on créer une pagination avec un nombre de contenu constant pour chaque page.
         $articles = $this->getDoctrine()
@@ -104,7 +112,8 @@ class ArticleController extends Controller
             'articles' => $articles,
             'page' => $page,
             'numberPage' => ceil(count($articles) / $numberContentsByPage)
-            ));
+        ));
+
     }
 
     public function suggestAction($page)

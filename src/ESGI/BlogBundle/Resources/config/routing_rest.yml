@@ -1,0 +1,4 @@
+article:
+    type:     rest
+    resource: ESGI\BlogBundle\Controller\ArticleRestController
+    name_prefix: api_

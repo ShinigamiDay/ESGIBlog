@@ -5,12 +5,17 @@ namespace ESGI\BlogBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * Article
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="ESGI\BlogBundle\Entity\ArticleRepository")
+ * @ExclusionPolicy("all")
  */
 class Article
 {
@@ -20,6 +25,7 @@ class Article
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     private $id;
 
@@ -27,6 +33,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Expose
      */
     private $title;
 
@@ -34,6 +41,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="body", type="text")
+     * @Expose
      */
     private $body;
 
@@ -41,24 +49,28 @@ class Article
      * @var boolean
      *
      * @ORM\Column(name="isPublished", type="boolean")
+     * @Expose
      */
     private $isPublished;
 
     /**
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="created", type="datetime")
+     * @Expose
      */
     private $created;
 
     /**
      * @ORM\Column(name="updated", type="datetime")
      * @Gedmo\Timestampable(on="update")
+     * @Expose
      */
     private $updated;
 
     /**
      * @ORM\ManyToOne(targetEntity="ESGI\UserBundle\Entity\User", cascade={"persist"}, inversedBy="articles")
      * @ORM\JoinColumn(nullable=true)
+     * @Expose
      */
     private $user;
 
@@ -66,12 +78,14 @@ class Article
      * @var Image
      * @ORM\ManyToOne(targetEntity="ESGI\BlogBundle\Entity\Image", cascade={"persist", "remove"}, inversedBy="articles")
      * @Assert\Valid()
+     * @Expose
      */
     private $image;
 
     /**
      * @var Category
      * @ORM\ManyToOne(targetEntity="ESGI\BlogBundle\Entity\Category", cascade={"persist"}, inversedBy="articles")
+     * @Expose
      */
     private $category;
 
@@ -85,11 +99,13 @@ class Article
      * @var boolean
      *
      * @ORM\Column(name="isCommented", type="boolean")
+     * @Expose
      */
     private $isCommented;
 
     /**
      * @ORM\OneToMany(targetEntity="ESGI\BlogBundle\Entity\Comment", cascade={"persist", "remove"}, mappedBy="article")
+     * @Expose
      */
     private $comments;
 
@@ -104,7 +120,8 @@ class Article
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
+     * @VirtualProperty
      */
     public function getId()
     {
@@ -127,7 +144,8 @@ class Article
     /**
      * Get title
      *
-     * @return string 
+     * @return string
+     * @VirtualProperty
      */
     public function getTitle()
     {
@@ -150,7 +168,8 @@ class Article
     /**
      * Get body
      *
-     * @return string 
+     * @return string
+     * @VirtualProperty
      */
     public function getBody()
     {
@@ -173,7 +192,8 @@ class Article
     /**
      * Get isPublished
      *
-     * @return boolean 
+     * @return boolean
+     * @VirtualProperty
      */
     public function getIsPublished()
     {
@@ -196,7 +216,8 @@ class Article
     /**
      * Get image
      *
-     * @return \ESGI\BlogBundle\Entity\Image 
+     * @return \ESGI\BlogBundle\Entity\Image
+     * @VirtualProperty
      */
     public function getImage()
     {
@@ -219,7 +240,8 @@ class Article
     /**
      * Get category
      *
-     * @return \ESGI\BlogBundle\Entity\Category 
+     * @return \ESGI\BlogBundle\Entity\Category
+     * @VirtualProperty
      */
     public function getCategory()
     {
@@ -242,7 +264,7 @@ class Article
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -265,7 +287,8 @@ class Article
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
+     * @VirtualProperty
      */
     public function getCreated()
     {
@@ -288,7 +311,8 @@ class Article
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
+     * @VirtualProperty
      */
     public function getUpdated()
     {
@@ -311,7 +335,8 @@ class Article
     /**
      * Get user
      *
-     * @return \ESGI\UserBundle\Entity\User 
+     * @return \ESGI\UserBundle\Entity\User
+     * @VirtualProperty
      */
     public function getUser()
     {
@@ -334,7 +359,8 @@ class Article
     /**
      * Get isCommented
      *
-     * @return boolean 
+     * @return boolean
+     * @VirtualProperty
      */
     public function getIsCommented()
     {
@@ -367,7 +393,8 @@ class Article
     /**
      * Get comments
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
+     * @VirtualProperty
      */
     public function getComments()
     {
