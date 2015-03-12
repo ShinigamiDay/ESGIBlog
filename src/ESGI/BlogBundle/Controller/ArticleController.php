@@ -6,8 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use ESGI\BlogBundle\Entity\Article;
 use ESGI\BlogBundle\Form\ArticleType;
-use ESGI\BlogBundle\Entity\Image;
-use ESGI\BlogBundle\Form\ImageType;
 use Symfony\Component\HttpFoundation\Request;
 
 class ArticleController extends Controller

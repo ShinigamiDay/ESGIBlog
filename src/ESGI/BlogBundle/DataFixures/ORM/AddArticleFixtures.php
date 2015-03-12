@@ -1,19 +1,25 @@
 <?php
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+namespace ESGI\BlogBundle\DataFixtures\ORM;
+
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use ESGI\BlogBundle\Entity\Article;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 
-class AddArticleFixtures implements FixtureInterface
+class AddArticleFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
     function load(ObjectManager $manager)
     {
         $i = 1;
+        $id = 10;
 
         while ($i <= 10) {
-
+            $rand = rand(1, 10);
             $article = new Article();
-            $article->setAuthor('nico N°' . $i);
+            $article->setUser(
+                $this->getReference('user-' . $rand)
+            );
             $article->setBody("Article n°" . $i);
             $article->setCategory(null);
             $article->setIsPublished(true);
@@ -24,5 +30,10 @@ class AddArticleFixtures implements FixtureInterface
         }
 
         $manager->flush();
+    }
+
+    public function getOrder()
+    {
+        return 3;
     }
 }
