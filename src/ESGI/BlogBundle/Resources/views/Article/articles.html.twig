@@ -2,13 +2,10 @@
 
 {% block title %}ESGIBlogBundle:Article:articles{% endblock %}
 
-{% block body %}
+{% block blog_body %}
 
 
-    <h3><a href="{{ path('articles', {'id': 0}) }}">{{ 'Toutes'|trans }}</a></h3>
-    {% for category in categories %}
-        <h3><a href="{{ path('articles', {'id': category.id}) }}">{{ category.name }}</a></h3>
-    {% endfor %}
+  
 
     {# Afficher les contenus #}
         <header class="intro-header" style="background-image: url({{ asset('img/home-bg.jpg') }})">
@@ -25,7 +22,11 @@
         </div>
     </header>
     <div class = "container">
-   
+    
+     <h3><a href="{{ path('articles', {'id': 0}) }}">{{ 'Toutes'|trans }}</a></h3>
+    {% for category in categories %}
+        <h3><a href="{{ path('articles', {'id': category.id}) }}">{{ category.name }}</a></h3>
+    {% endfor %}
     
      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
               
