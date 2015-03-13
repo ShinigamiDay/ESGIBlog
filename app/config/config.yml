@@ -88,13 +88,18 @@ fos_user:
 
 sonata_admin:
     title: ESGI Blog
+    templates:
+        search:              SonataAdminBundle:Core:search.html.twig
+        search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
+        dashboard: SonataAdminBundle:Core:dashboard.html.twig
 
 sonata_block:
     default_contexts: [cms]
     blocks:
         sonata.admin.block.admin_list:
-            contexts:   [admin]
-
+            contexts: [admin]
+        sonata.admin.block.search_result:
+            contexts: [admin]
         sonata.block.service.text:
         sonata.block.service.action:
         sonata.block.service.rss:

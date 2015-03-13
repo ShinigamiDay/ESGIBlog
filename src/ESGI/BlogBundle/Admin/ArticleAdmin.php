@@ -26,7 +26,7 @@ class ArticleAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title')
+            ->add('title', null, array('global_search' => true))
             ->add('body')
             ->add('isPublished')
             ->add('image', "sonata_type_model_list")
@@ -40,7 +40,7 @@ class ArticleAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('title')
+            ->add('title', null, array('global_search' => true))
             ->add('isPublished')
             ->add('category')
         ;
