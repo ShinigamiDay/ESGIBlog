@@ -25,11 +25,16 @@ delete:
     defaults: { _controller: ESGIBlogBundle:Article:delete }
 
 articles:
-    path:     /articles/{page}/{id}
-    defaults: { _controller: ESGIBlogBundle:Article:articles, page: 1, id: 0 }
+    path:     /articles/{page}/{id}/{key}
+    defaults: { _controller: ESGIBlogBundle:Article:articles, page: 1, id: 0, key: null }
     requirements:
         page: \d*
         id:   \d+
+        key:  "[a-zA-Z0-9-_/]+"
+
+article_search:
+    path:     /article/search
+    defaults: { _controller: ESGIBlogBundle:Article:search }
 
 suggest:
     path:     /suggest/{page}
