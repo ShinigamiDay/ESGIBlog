@@ -3,6 +3,13 @@
 {% block title %}ESGIBlogBundle:Article:articles{% endblock %}
 
 {% block body %}
+
+
+    <h3><a href="{{ path('articles', {'id': 0}) }}">{{ 'Toutes'|trans }}</a></h3>
+    {% for category in categories %}
+        <h3><a href="{{ path('articles', {'id': category.id}) }}">{{ category.name }}</a></h3>
+    {% endfor %}
+
     {# Afficher les contenus #}
         <header class="intro-header" style="background-image: url({{ asset('img/home-bg.jpg') }})">
         <div class="container">

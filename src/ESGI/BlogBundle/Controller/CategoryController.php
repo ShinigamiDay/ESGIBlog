@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function getCategoriesAction()
     {
-        $categories = $this->getDoctrine()->getRepository("ESGIBlogBundle:Category");
+        $categories = $this->getDoctrine()->getRepository("ESGIBlogBundle:Category")->findAll();
 
         return $this->render('ESGIBlogBundle:Category:categories.html.twig', array(
                 'categories' => $categories,
@@ -41,7 +41,7 @@ class CategoryController extends Controller
                 $em->flush();
 
                 // On redirige vers la page de visualisation du contenu nouvellement créé
-                return $this->redirect($this->generateUrl('see', array('id' => $category->getId())));
+                return $this->redirect($this->generateUrl('articles'));
             }
         }
 
@@ -54,6 +54,6 @@ class CategoryController extends Controller
     {
         return $this->render('ESGIBlogBundle:Category:edit.html.twig', array(
                 // ...
-            ));
+        ));
     }
 }
