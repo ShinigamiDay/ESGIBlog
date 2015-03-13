@@ -4,11 +4,9 @@ namespace ESGI\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Entity\User as BaseUser;
-use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * User
+ * User.
  *
  * @ORM\Entity
  */
@@ -21,7 +19,7 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected  $id;
+    protected $id;
 
     /**
      * @var Article
@@ -46,11 +44,10 @@ class User extends BaseUser
         // your own logic
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -58,9 +55,10 @@ class User extends BaseUser
     }
 
     /**
-     * Add articles
+     * Add articles.
      *
      * @param \ESGI\BlogBundle\Entity\Article $articles
+     *
      * @return User
      */
     public function addArticle(\ESGI\BlogBundle\Entity\Article $articles)
@@ -71,7 +69,7 @@ class User extends BaseUser
     }
 
     /**
-     * Remove articles
+     * Remove articles.
      *
      * @param \ESGI\BlogBundle\Entity\Article $articles
      */
@@ -81,20 +79,20 @@ class User extends BaseUser
     }
 
     /**
-     * Get articles
+     * Get articles.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getArticles()
     {
         return $this->articles;
     }
 
-
     /**
-     * Add categories
+     * Add categories.
      *
      * @param \ESGI\BlogBundle\Entity\Category $categories
+     *
      * @return User
      */
     public function addCategory(\ESGI\BlogBundle\Entity\Category $categories)
@@ -105,7 +103,7 @@ class User extends BaseUser
     }
 
     /**
-     * Remove categories
+     * Remove categories.
      *
      * @param \ESGI\BlogBundle\Entity\Category $categories
      */
@@ -115,9 +113,9 @@ class User extends BaseUser
     }
 
     /**
-     * Get categories
+     * Get categories.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {

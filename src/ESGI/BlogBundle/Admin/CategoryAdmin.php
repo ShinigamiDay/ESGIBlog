@@ -5,21 +5,20 @@ namespace ESGI\BlogBundle\Admin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 
 class CategoryAdmin extends Admin
 {
-
     protected $securityContext;
-    public function setSecurityContext($securityContext) {
+    public function setSecurityContext($securityContext)
+    {
         $this->securityContext = $securityContext;
     }
 
     // setup the default sort column and order
     protected $datagridValues = array(
         '_sort_order' => 'ASC',
-        '_sort_by' => 'name'
+        '_sort_by' => 'name',
     );
 
     protected function configureFormFields(FormMapper $formMapper)
@@ -44,5 +43,4 @@ class CategoryAdmin extends Admin
     {
         $article->setUser($this->securityContext->getToken()->getUser());
     }
-
 }

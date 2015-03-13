@@ -1,16 +1,13 @@
-<?php 
+<?php
 namespace ESGI\BlogBundle\Service;
 
 /**
-* Computer
-*/
-class Computer 
+ * Computer.
+ */
+class Computer
 {
-	
-	public function addition($a, $b)
-	{
-		return $a + $b;
-	}
+    public function addition($a, $b)
+    {
+        return $a + $b;
+    }
 }
-
-?>

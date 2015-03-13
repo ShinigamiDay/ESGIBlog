@@ -10,17 +10,15 @@ class CategoryController extends Controller
 {
     public function getCategoriesAction()
     {
-        
         $categories = $this->getDoctrine()->getRepository("ESGIBlogBundle:Category");
 
         return $this->render('ESGIBlogBundle:Category:categories.html.twig', array(
-                'categories' => $categories
+                'categories' => $categories,
             ));
     }
 
     public function postCategoriesAction()
     {
-
         $category = new Category();
 
         // On crée le FormBuilder grâce à la méthode du contrôleur
@@ -48,7 +46,7 @@ class CategoryController extends Controller
         }
 
         return $this->render('ESGIBlogBundle:Category:add.html.twig', array(
-                'form' => $form->createView()
+                'form' => $form->createView(),
             ));
     }
 
@@ -58,5 +56,4 @@ class CategoryController extends Controller
                 // ...
             ));
     }
-
 }

@@ -4,10 +4,9 @@ namespace ESGI\BlogBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Category
+ * Category.
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="ESGI\BlogBundle\Entity\CategoryRepository")
@@ -34,7 +33,7 @@ class Category
      * @var Articles
      * @ORM\OneToMany(targetEntity="ESGI\BlogBundle\Entity\Article", cascade={"persist"}, mappedBy="category")
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id", nullable=false)
-    */
+     */
     private $articles;
 
     /**
@@ -48,11 +47,10 @@ class Category
         $this->articles = new ArrayCollection();
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -60,9 +58,10 @@ class Category
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Category
      */
     public function setName($name)
@@ -73,9 +72,9 @@ class Category
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -83,9 +82,10 @@ class Category
     }
 
     /**
-     * Add articles
+     * Add articles.
      *
      * @param \ESGI\BlogBundle\Entity\Article $articles
+     *
      * @return Category
      */
     public function addArticle(\ESGI\BlogBundle\Entity\Article $articles)
@@ -96,7 +96,7 @@ class Category
     }
 
     /**
-     * Remove articles
+     * Remove articles.
      *
      * @param \ESGI\BlogBundle\Entity\Article $articles
      */
@@ -106,20 +106,20 @@ class Category
     }
 
     /**
-     * Get articles
+     * Get articles.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getArticles()
     {
         return $this->articles;
     }
 
-
     /**
-     * Set user
+     * Set user.
      *
      * @param \ESGI\UserBundle\Entity\User $user
+     *
      * @return Category
      */
     public function setUser(\ESGI\UserBundle\Entity\User $user)
@@ -130,16 +130,17 @@ class Category
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \ESGI\UserBundle\Entity\User 
+     * @return \ESGI\UserBundle\Entity\User
      */
     public function getUser()
     {
         return $this->user;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->getName();
     }
 }

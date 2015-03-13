@@ -7,11 +7,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
- * Article
+ * Article.
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="ESGI\BlogBundle\Entity\ArticleRepository")
@@ -116,9 +115,8 @@ class Article
         $this->isCommented = true;
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return integer
      * @VirtualProperty
@@ -129,9 +127,10 @@ class Article
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
+     *
      * @return Article
      */
     public function setTitle($title)
@@ -142,7 +141,7 @@ class Article
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      * @VirtualProperty
@@ -153,9 +152,10 @@ class Article
     }
 
     /**
-     * Set body
+     * Set body.
      *
      * @param string $body
+     *
      * @return Article
      */
     public function setBody($body)
@@ -166,7 +166,7 @@ class Article
     }
 
     /**
-     * Get body
+     * Get body.
      *
      * @return string
      * @VirtualProperty
@@ -177,9 +177,10 @@ class Article
     }
 
     /**
-     * Set isPublished
+     * Set isPublished.
      *
      * @param boolean $isPublished
+     *
      * @return Article
      */
     public function setIsPublished($isPublished)
@@ -190,7 +191,7 @@ class Article
     }
 
     /**
-     * Get isPublished
+     * Get isPublished.
      *
      * @return boolean
      * @VirtualProperty
@@ -201,9 +202,10 @@ class Article
     }
 
     /**
-     * Set image
+     * Set image.
      *
      * @param \ESGI\BlogBundle\Entity\Image $image
+     *
      * @return Article
      */
     public function setImage(\ESGI\BlogBundle\Entity\Image $image = null)
@@ -214,7 +216,7 @@ class Article
     }
 
     /**
-     * Get image
+     * Get image.
      *
      * @return \ESGI\BlogBundle\Entity\Image
      * @VirtualProperty
@@ -225,9 +227,10 @@ class Article
     }
 
     /**
-     * Set category
+     * Set category.
      *
      * @param \ESGI\BlogBundle\Entity\Category $category
+     *
      * @return Category
      */
     public function setCategory(\ESGI\BlogBundle\Entity\Category $category = null)
@@ -238,7 +241,7 @@ class Article
     }
 
     /**
-     * Get category
+     * Get category.
      *
      * @return \ESGI\BlogBundle\Entity\Category
      * @VirtualProperty
@@ -249,9 +252,10 @@ class Article
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
+     *
      * @return Article
      */
     public function setSlug($slug)
@@ -262,7 +266,7 @@ class Article
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
      * @return string
      */
@@ -272,9 +276,10 @@ class Article
     }
 
     /**
-     * Set created
+     * Set created.
      *
      * @param \DateTime $created
+     *
      * @return Article
      */
     public function setCreated($created)
@@ -285,7 +290,7 @@ class Article
     }
 
     /**
-     * Get created
+     * Get created.
      *
      * @return \DateTime
      * @VirtualProperty
@@ -296,9 +301,10 @@ class Article
     }
 
     /**
-     * Set updated
+     * Set updated.
      *
      * @param \DateTime $updated
+     *
      * @return Article
      */
     public function setUpdated($updated)
@@ -309,7 +315,7 @@ class Article
     }
 
     /**
-     * Get updated
+     * Get updated.
      *
      * @return \DateTime
      * @VirtualProperty
@@ -320,9 +326,10 @@ class Article
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \ESGI\UserBundle\Entity\User $user
+     *
      * @return Article
      */
     public function setUser(\ESGI\UserBundle\Entity\User $user)
@@ -333,7 +340,7 @@ class Article
     }
 
     /**
-     * Get user
+     * Get user.
      *
      * @return \ESGI\UserBundle\Entity\User
      * @VirtualProperty
@@ -344,9 +351,10 @@ class Article
     }
 
     /**
-     * Set isCommented
+     * Set isCommented.
      *
      * @param boolean $isCommented
+     *
      * @return Article
      */
     public function setIsCommented($isCommented)
@@ -357,7 +365,7 @@ class Article
     }
 
     /**
-     * Get isCommented
+     * Get isCommented.
      *
      * @return boolean
      * @VirtualProperty
@@ -368,9 +376,10 @@ class Article
     }
 
     /**
-     * Add comments
+     * Add comments.
      *
      * @param \ESGI\ESGIBlogBundle\Entity\Comment $comments
+     *
      * @return Article
      */
     public function addComment(\ESGI\ESGIBlogBundle\Entity\Comment $comments)
@@ -381,7 +390,7 @@ class Article
     }
 
     /**
-     * Remove comments
+     * Remove comments.
      *
      * @param \ESGI\ESGIBlogBundle\Entity\Comment $comments
      */
@@ -391,7 +400,7 @@ class Article
     }
 
     /**
-     * Get comments
+     * Get comments.
      *
      * @return \Doctrine\Common\Collections\Collection
      * @VirtualProperty
