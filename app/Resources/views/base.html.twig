@@ -37,15 +37,14 @@
                         <a href="contact.html">Contact</a>
                     </li>
                     <li>
-                      <form class="navbar-form navbar-left" role="connexion">
-        <div class="form-group">
-         
-          <input type="text" style ="background: transparent; color: white" class="form-control"> </input>
-        
-        </div>
-        <button type="submit" style = "background: none; color: white; border: none">Rechercher</button>
-      </form>
-  </li>
+                    
+                    <form method="post" action="{{ path('article_search') }}" class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="{{'Rechercher'|trans}}" name="key" size="40">
+                            <button type="submit" class="btnt" style = "background: transparent; border: none"><span class="glyphicon glyphicon-search"></button>
+                        </div>
+                    </form>
+                      </li>
                     <li>
        <form class="navbar-form navbar-left" role="connexion">
         <div class="form-group">
