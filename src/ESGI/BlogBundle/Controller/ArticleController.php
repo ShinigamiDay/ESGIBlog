@@ -210,21 +210,31 @@ class ArticleController extends FOSRestController
     }
 
 
-    public function fetchArticlesWithCategoryAction($page, $id)
-    {
-        $numberContentsByPage = 2;
-        // Pour récupérer la liste de tous les articles : on utilise findAll()
-        // Sinon, on créer une pagination avec un nombre de contenu constant pour chaque page.
-        $category = $this->getDoctrine()->getManager()->getRepository("ESGIBlogBundle:Category")->find($id);
-        $articles = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('ESGIBlogBundle:Article')
-            ->getArticlesPublishedCategory($numberContentsByPage, $page, $category);
+    public function searchAction() {
 
-        return $this->render('ESGIBlogBundle:Article:articles.html.twig', array(
+        $numberContentsByPage = 3;
+        $page = 1;
+
+        $request = $this->get('request');
+        $categories = $this->getDoctrine()->getManager()->getRepository("ESGIBlogBundle:Category")->findAll();
+        $articles = null;
+        // On vérifie qu'elle est de type POST
+        if ($request->getMethod() == 'POST') {
+            // On fait le lien Requête <-> Formulaire
+            $key = $request->request->get('key', '');
+
+            // Sinon, on créer une pagination avec un nombre de contenu constant pour chaque page.
+            $articles = $this->getDoctrine()
+                ->getManager()
+                ->getRepository('ESGIBlogBundle:Article')
+                ->getArticlesWithKey($key);
+        }
+
+        return $this->render('ESGIBlogBundle:Article:results.html.twig', array(
             'articles' => $articles,
-            'page' => $page,
-            'numberPage' => ceil(count($articles) / $numberContentsByPage),
+            'categories' => $categories,
         ));
+
+        //return $this->redirect($this->generateUrl('articles'));
     }
 }

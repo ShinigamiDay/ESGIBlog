@@ -1,0 +1,35 @@
+{% extends "ESGIBlogBundle::layout.html.twig" %}
+
+{% block title %}ESGIBlogBundle:Article:results{% endblock %}
+
+{% block body %}
+    <h1>Welcome to the Article:articles result page</h1>
+
+    <h3><a href="{{ path('articles', {'id': 0}) }}">{{ 'Toutes'|trans }}</a></h3>
+    {% for category in categories %}
+        <h3><a href="{{ path('articles', {'id': category.id}) }}">{{ category.name }}</a></h3>
+    {% endfor %}
+
+    {# Formulaire de Recherche #}
+    <div class="row content-search">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            {% include "ESGIBlogBundle:Article:search.html.twig" %}
+        </div>
+    </div>
+
+    {# Afficher les contenus #}
+    <div class="row">
+        {% for article in articles %}
+            <div class="col-sm-4 col-md-4">
+                <div class="thumbnail">
+                    <img src="{{ asset(article.image.webPath) }}" alt=""/>
+                    <div class="caption">
+                        <h3><a href="{{ path('see', {'id': article.id}) }}">{{ article.title }}</a></h3>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p>{{'Pas de contenus disponible.'|trans}}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

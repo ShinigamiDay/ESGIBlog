@@ -60,4 +60,20 @@ class ArticleRepository extends EntityRepository
 
         return new Paginator($query);
     }
+
+    public function getArticlesWithKey($key)
+    {
+
+        $query = $this->createQueryBuilder('a')
+            ->leftJoin('a.image', 'i')
+            ->addSelect('i')
+            ->orderBy('a.updated', 'DESC')
+            ->where('a.title LIKE :key')
+            ->setParameter('key', '%'.$key.'%')
+            ->orWhere('a.body LIKE :key')
+            ->setParameter('key', '%'.$key.'%')
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }
