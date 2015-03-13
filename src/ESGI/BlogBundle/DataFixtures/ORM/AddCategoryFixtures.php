@@ -27,13 +27,9 @@ class AddCategoryFixtures extends AbstractFixture implements OrderedFixtureInter
 
         $manager->flush();
     }
-<<<<<<< HEAD
 
     public function getOrder()
     {
         return 3;
     }
 }
-=======
-}
->>>>>>> origin/master
