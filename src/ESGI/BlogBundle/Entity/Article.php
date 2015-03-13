@@ -378,7 +378,7 @@ class Article
     /**
      * Add comments.
      *
-     * @param \ESGI\ESGIBlogBundle\Entity\Comment $comments
+     * @param \ESGI\BlogBundle\Entity\Comment $comments
      *
      * @return Article
      */
@@ -392,7 +392,7 @@ class Article
     /**
      * Remove comments.
      *
-     * @param \ESGI\ESGIBlogBundle\Entity\Comment $comments
+     * @param \ESGI\BlogBundle\Entity\Comment $comments
      */
     public function removeComment(\ESGI\ESGIBlogBundle\Entity\Comment $comments)
     {

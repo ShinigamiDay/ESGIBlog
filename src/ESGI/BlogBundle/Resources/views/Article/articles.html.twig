@@ -4,6 +4,12 @@
 
 {% block body %}
 <h1>Welcome to the Article:articles page</h1>
+
+    <h3><a href="{{ path('articles', {'id': 0}) }}">{{ 'Toutes'|trans }}</a></h3>
+    {% for category in categories %}
+        <h3><a href="{{ path('articles', {'id': category.id}) }}">{{ category.name }}</a></h3>
+    {% endfor %}
+
     {# Afficher les contenus #}
     <div class="row">
         {% for article in articles %}

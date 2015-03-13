@@ -25,10 +25,12 @@ delete:
     defaults: { _controller: ESGIBlogBundle:Article:delete }
 
 articles:
-    path:     /articles/{page}
-    defaults: { _controller: ESGIBlogBundle:Article:articles, page: 1 }
+    path:     /articles/{page}/{id}
+    defaults: { _controller: ESGIBlogBundle:Article:articles, page: 1, id: 0 }
     requirements:
         page: \d*
+        id:   \d+
+
 suggest:
     path:     /suggest/{page}
     defaults: { _controller: ESGIBlogBundle:Article:suggest, page: 1 }

@@ -93,18 +93,38 @@ class ArticleController extends FOSRestController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function articlesAction($page)
+    public function articlesAction($page, $id)
     {
         $numberContentsByPage = 3;
         // Pour récupérer la liste de tous les articles : on utilise findAll()
         // Sinon, on créer une pagination avec un nombre de contenu constant pour chaque page.
+
+        $articles = null;
+        $categories = $this->getDoctrine()->getManager()->getRepository("ESGIBlogBundle:Category")->findAll();
+
+        if ($id === 0)
+        {
+            $articles = $this->getDoctrine()
+                ->getManager()
+                ->getRepository('ESGIBlogBundle:Article')
+                ->getArticlesPublished($numberContentsByPage, $page);
+        } else {
+            $category = $this->getDoctrine()->getManager()->getRepository("ESGIBlogBundle:Category")->find($id);
+            $articles =  $this->getDoctrine()->getManager()
+                ->getRepository('ESGIBlogBundle:Article')
+                ->getArticlesPublishedCategory($numberContentsByPage, $page, $category);
+        }
+
+
+        /*
         $articles = $this->getDoctrine()
             ->getManager()
             ->getRepository('ESGIBlogBundle:Article')
-            ->getArticlesPublished($numberContentsByPage, $page);
+            ->getArticlesPublished($numberContentsByPage, $page);*/
 
         return $this->render('ESGIBlogBundle:Article:articles.html.twig', array(
             'articles' => $articles,
+            'categories' => $categories,
             'page' => $page,
             'numberPage' => ceil(count($articles) / $numberContentsByPage),
         ));
@@ -186,6 +206,25 @@ class ArticleController extends FOSRestController
         return $this->render('ESGIBlogBundle:Article:edit.html.twig', array(
             'article' => $article,
             'form'    => $form->createView(),
+        ));
+    }
+
+
+    public function fetchArticlesWithCategoryAction($page, $id)
+    {
+        $numberContentsByPage = 2;
+        // Pour récupérer la liste de tous les articles : on utilise findAll()
+        // Sinon, on créer une pagination avec un nombre de contenu constant pour chaque page.
+        $category = $this->getDoctrine()->getManager()->getRepository("ESGIBlogBundle:Category")->find($id);
+        $articles = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ESGIBlogBundle:Article')
+            ->getArticlesPublishedCategory($numberContentsByPage, $page, $category);
+
+        return $this->render('ESGIBlogBundle:Article:articles.html.twig', array(
+            'articles' => $articles,
+            'page' => $page,
+            'numberPage' => ceil(count($articles) / $numberContentsByPage),
         ));
     }
 }
