@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

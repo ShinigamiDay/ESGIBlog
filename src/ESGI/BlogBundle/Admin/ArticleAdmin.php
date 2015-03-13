@@ -27,7 +27,12 @@ class ArticleAdmin extends Admin
     {
         $formMapper
             ->add('title')
-            ->add('body')
+            ->add('body', 'textarea', array(
+                'attr' => array(
+                    'class' => 'tinymce',
+                    'data-theme' => 'bbcode' // Skip it if you want to use default theme
+                )
+            ))
             ->add('isPublished')
             ->add('isCommented')
             ->add('image', "sonata_type_model_list")

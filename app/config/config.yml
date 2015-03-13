@@ -92,7 +92,7 @@ fos_user:
 sonata_admin:
     title: ESGI Blog
     templates:
-        layout:                         SonataAdminBundle::standard_layout.html.twig
+        layout:                         ESGIBlogBundle:Admin:standard_layout.html.twig
         ajax:                           SonataAdminBundle::ajax_layout.html.twig
         list:                           SonataAdminBundle:CRUD:list.html.twig
         show:                           SonataAdminBundle:CRUD:show.html.twig
@@ -179,3 +179,12 @@ jms_serializer:
 
 #Api Doc
 nelmio_api_doc: ~
+
+stfalcon_tinymce:
+    include_jquery: true
+    tinymce_jquery: true
+    selector: ".tinymce"
+    language: %locale%
+    theme:
+        simple:
+            theme: "modern"
