@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function registrationAction()
     {
-
+        $categories = $this->getDoctrine()->getManager()->getRepository("ESGIBlogBundle:Category")->findAll();
         $userManager = $this->container->get('fos_user.user_manager');
         $user = $userManager->createUser();
         $form = $this->createForm(new RegistrationFormType(), $user);
@@ -43,7 +43,6 @@ class UserController extends Controller
 
      public function profileAction()
     {
-
         $userManager = $this->container->get('fos_user.user_manager');
         $user = $userManager->createUser();
         $form = $this->createForm(new ProfileFormType(), $user);

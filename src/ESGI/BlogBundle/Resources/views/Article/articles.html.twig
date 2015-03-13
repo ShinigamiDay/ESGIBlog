@@ -25,10 +25,7 @@
     </header>
     <div class = "container">
     
-     <h3><a href="{{ path('articles', {'id': 0}) }}">{{ 'Toutes'|trans }}</a></h3>
-    {% for category in categories %}
-        <h3><a href="{{ path('articles', {'id': category.id}) }}">{{ category.name }}</a></h3>
-    {% endfor %}
+   
     
      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
               
@@ -41,7 +38,7 @@
                         </h2>
                        
                     </a>
-                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 24, 2014</p>
+                    <p class="post-meta">Posted by {{ article.user.username }} on September 24, 2014</p>
                 </div>
             </div>
         {% else %}
