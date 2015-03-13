@@ -26,5 +26,4 @@ class CategoryControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/putCategory');
     }
-
 }

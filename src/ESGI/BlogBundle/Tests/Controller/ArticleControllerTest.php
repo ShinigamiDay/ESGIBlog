@@ -41,5 +41,4 @@ class ArticleControllerTest extends WebTestCase
         //Retourne faux
         //$this->assertEquals(1, $crawler->filter('h1:contains("Pingouin et chat")')->count());
     }
-
 }

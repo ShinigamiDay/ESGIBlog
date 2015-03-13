@@ -9,7 +9,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 
 class AddArticleFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
-    function load(ObjectManager $manager)
+    public function load(ObjectManager $manager)
     {
         $i = 1;
         $id = 10;
@@ -18,12 +18,17 @@ class AddArticleFixtures extends AbstractFixture implements OrderedFixtureInterf
             $rand = rand(1, 10);
             $article = new Article();
             $article->setUser(
-                $this->getReference('user-' . $rand)
+                $this->getReference('user-'.$rand)
             );
+<<<<<<< HEAD
             $article->setBody("Article n°" . $i);
             $article->setCategory(
                 $this->getReference('category-' . $rand)
             );
+=======
+            $article->setBody("Article n°".$i);
+            $article->setCategory(null);
+>>>>>>> origin/master
             $article->setIsPublished(true);
             $article->setTitle('Titre n°'.$i);
             $article->setImage(

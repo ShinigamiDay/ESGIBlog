@@ -10,7 +10,7 @@ class CommentType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -18,14 +18,14 @@ class CommentType extends AbstractType
             ->add('content')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ESGI\BlogBundle\Entity\Comment'
+            'data_class' => 'ESGI\BlogBundle\Entity\Comment',
         ));
     }
 

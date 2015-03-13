@@ -8,10 +8,8 @@ use ESGI\BlogBundle\Form\CommentType;
 
 class CommentController extends Controller
 {
-
     public function postCommentsAction($id)
     {
-
         $comment = new Comment();
 
         // On crée le FormBuilder grâce à la méthode du contrôleur
@@ -33,8 +31,7 @@ class CommentController extends Controller
                                 ->find($id);
 
                 // On ajoute le commentaire seulement si c'est autorisé.
-                if ($article->getIsCommented())
-                {
+                if ($article->getIsCommented()) {
                     $comment->setArticle($article);
                     $user = $this->container->get('security.context')->getToken()->getUser();
                     $comment->setUser($user);
@@ -48,22 +45,19 @@ class CommentController extends Controller
         }
 
         return $this->render('ESGIBlogBundle:Comment:add.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ));
     }
 
     public function putCommentAction(Comment $comment)
     {
-
         $form = $this->createForm(new CommentType(), $comment);
 
         $request = $this->get("request");
 
-        if($request->getMethod() == "POST")
-        {
+        if ($request->getMethod() == "POST") {
             $form->handleRequest($request);
-            if($form->isValid())
-            {
+            if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $user = $this->container->get('security.context')->getToken()->getUser();
                 $comment->setUser($user);
@@ -74,8 +68,7 @@ class CommentController extends Controller
 
         return $this->render('ESGIBlogBundle:Comment:edit.html.twig', array(
             'form' => $form->createView(),
-            'comment' => $comment
+            'comment' => $comment,
         ));
     }
-
 }

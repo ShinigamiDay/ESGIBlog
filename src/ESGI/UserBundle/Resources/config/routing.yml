@@ -1,3 +1,3 @@
-esgi_user_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: ESGIUserBundle:Default:index }
+#esgi_user_homepage:
+#    path:     /hello/{name}
+#    defaults: { _controller: ESGIUserBundle:Default:index }

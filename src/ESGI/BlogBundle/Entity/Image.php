@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Image
+ * Image.
  *
  * @ORM\Table()
  * @ORM\HasLifecycleCallbacks
@@ -52,11 +52,10 @@ class Image
 
     private $tempFilename;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -64,9 +63,10 @@ class Image
     }
 
     /**
-     * Set path
+     * Set path.
      *
      * @param string $path
+     *
      * @return Image
      */
     public function setPath($path)
@@ -77,9 +77,9 @@ class Image
     }
 
     /**
-     * Get path
+     * Get path.
      *
-     * @return string 
+     * @return string
      */
     public function getPath()
     {
@@ -87,9 +87,10 @@ class Image
     }
 
     /**
-     * Set alt
+     * Set alt.
      *
      * @param string $alt
+     *
      * @return Image
      */
     public function setAlt($alt)
@@ -100,9 +101,9 @@ class Image
     }
 
     /**
-     * Get alt
+     * Get alt.
      *
-     * @return string 
+     * @return string
      */
     public function getAlt()
     {
@@ -125,7 +126,8 @@ class Image
         }
     }
 
-    public function getFile() {
+    public function getFile()
+    {
         return $this->file;
     }
 
@@ -212,7 +214,7 @@ class Image
         return $this->getUploadDir().'/'.$this->getPath();
     }
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -220,9 +222,10 @@ class Image
     }
 
     /**
-     * Add articles
+     * Add articles.
      *
      * @param \ESGI\BlogBundle\Entity\Article $articles
+     *
      * @return Image
      */
     public function addArticle(\ESGI\BlogBundle\Entity\Article $articles)
@@ -233,7 +236,7 @@ class Image
     }
 
     /**
-     * Remove articles
+     * Remove articles.
      *
      * @param \ESGI\BlogBundle\Entity\Article $articles
      */
@@ -243,9 +246,9 @@ class Image
     }
 
     /**
-     * Get articles
+     * Get articles.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getArticles()
     {

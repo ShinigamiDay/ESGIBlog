@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
         );
 

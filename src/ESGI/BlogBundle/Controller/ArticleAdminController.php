@@ -10,8 +10,7 @@ class ArticleAdminController extends Controller
 {
     public function batchActionExtend(ProxyQueryInterface $selectedModelQuery)
     {
-        if ($this->admin->isGranted('EDIT') === false || $this->admin->isGranted('DELETE') === false)
-        {
+        if ($this->admin->isGranted('EDIT') === false || $this->admin->isGranted('DELETE') === false) {
             throw new AccessDeniedException();
         }
 
@@ -28,11 +27,11 @@ class ArticleAdminController extends Controller
         } catch (\Exception $e) {
             $this->get('session')->setFlash('sonata_flash_error', $e->getMessage());
 
-            return new RedirectResponse($this->admin->generateUrl('list',$this->admin->getFilterParameters()));
+            return new RedirectResponse($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
         }
 
         $this->get('session')->setFlash('sonata_flash_success',  sprintf('The selected article validity has been extended until %s.', date('m/d/Y', time() + 86400 * 30)));
 
-        return new RedirectResponse($this->admin->generateUrl('list',$this->admin->getFilterParameters()));
+        return new RedirectResponse($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
     }
 }

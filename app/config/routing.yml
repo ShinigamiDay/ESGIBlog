@@ -43,3 +43,8 @@ rest:
     type: rest
     resource: "@ESGIBlogBundle/Resources/config/routing_rest.yml"
     prefix:   /api
+
+#Doc API
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

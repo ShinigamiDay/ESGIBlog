@@ -9,7 +9,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 
 class AddUserFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
-    function load(ObjectManager $manager)
+    public function load(ObjectManager $manager)
     {
         $i = 1;
 
@@ -25,7 +25,7 @@ class AddUserFixtures extends AbstractFixture implements OrderedFixtureInterface
             $user->setLocked(false);
 
             $manager->persist($user);
-            $this->addReference('user-' . $i, $user);
+            $this->addReference('user-'.$i, $user);
 
             $i++;
         }

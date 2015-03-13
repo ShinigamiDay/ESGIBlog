@@ -9,7 +9,7 @@ use ESGI\BlogBundle\Entity\Category;
 
 class AddCategoryFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
-    function load(ObjectManager $manager)
+    public function load(ObjectManager $manager)
     {
         $i = 1;
 
@@ -27,9 +27,13 @@ class AddCategoryFixtures extends AbstractFixture implements OrderedFixtureInter
 
         $manager->flush();
     }
+<<<<<<< HEAD
 
     public function getOrder()
     {
         return 3;
     }
 }
+=======
+}
+>>>>>>> origin/master

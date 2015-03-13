@@ -4,20 +4,15 @@ namespace ESGI\BlogBundle\Controller;
 
 use ESGI\BlogBundle\Entity\SuggestArticle;
 use ESGI\BlogBundle\Form\SuggestArticleType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use ESGI\BlogBundle\Entity\Article;
 use ESGI\BlogBundle\Form\ArticleType;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\FOSRestController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use JMS\SerializerBundle\JMSSerializerBundle;
 
 class ArticleController extends FOSRestController
 {
     public function addAction()
     {
-
         $article = new Article();
 
         // On crée le FormBuilder grâce à la méthode du contrôleur
@@ -57,13 +52,12 @@ class ArticleController extends FOSRestController
                     ->find($article->getId());
 
         return $this->render('ESGIBlogBundle:Article:see.html.twig', array(
-                'article' => $article
+                'article' => $article,
         ));
     }
 
     public function deleteAction(Article $article)
     {
-
         $form = $this->createFormBuilder()->getForm();
 
         $request = $this->get('request');
@@ -88,13 +82,15 @@ class ArticleController extends FOSRestController
 
         return $this->render('ESGIBlogBundle:Article:delete.html.twig', array(
                 'article' => $article,
-                'form'    => $form->createView()
+                'form'    => $form->createView(),
             ));
     }
 
     /**
      * Fetch all articles published with pagination.
+     *
      * @param $page
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function articlesAction($page)
@@ -107,13 +103,11 @@ class ArticleController extends FOSRestController
             ->getRepository('ESGIBlogBundle:Article')
             ->getArticlesPublished($numberContentsByPage, $page);
 
-
         return $this->render('ESGIBlogBundle:Article:articles.html.twig', array(
             'articles' => $articles,
             'page' => $page,
-            'numberPage' => ceil(count($articles) / $numberContentsByPage)
+            'numberPage' => ceil(count($articles) / $numberContentsByPage),
         ));
-
     }
 
     public function suggestAction($page)
@@ -126,14 +120,12 @@ class ArticleController extends FOSRestController
             ->getRepository('ESGIBlogBundle:SuggestArticle')
             ->getArticlesPaginator($numberContentsByPage, $page);
 
-
         return $this->render('ESGIBlogBundle:Article:suggest.html.twig', array(
             'articles' => $articles,
             'page' => $page,
-            'numberPage' => ceil(count($articles) / $numberContentsByPage)
+            'numberPage' => ceil(count($articles) / $numberContentsByPage),
         ));
     }
-
 
     public function suggestArticleAction()
     {
@@ -168,7 +160,6 @@ class ArticleController extends FOSRestController
 
     public function editAction(Article $article)
     {
-
         $form = $this->createForm(new ArticleType(), $article);
 
         $request = $this->get('request');
@@ -194,9 +185,7 @@ class ArticleController extends FOSRestController
 
         return $this->render('ESGIBlogBundle:Article:edit.html.twig', array(
             'article' => $article,
-            'form'    => $form->createView()
+            'form'    => $form->createView(),
         ));
-
     }
-
 }

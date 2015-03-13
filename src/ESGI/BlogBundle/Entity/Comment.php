@@ -3,11 +3,10 @@
 namespace ESGI\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Comment
+ * Comment.
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="ESGI\BlogBundle\Entity\CommentRepository")
@@ -50,15 +49,14 @@ class Comment
 
     /**
      * @ORM\ManyToOne(targetEntity="ESGI\UserBundle\Entity\User", cascade={"persist"}, inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $user;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -66,9 +64,10 @@ class Comment
     }
 
     /**
-     * Set content
+     * Set content.
      *
      * @param string $content
+     *
      * @return Comment
      */
     public function setContent($content)
@@ -79,9 +78,9 @@ class Comment
     }
 
     /**
-     * Get content
+     * Get content.
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -89,9 +88,10 @@ class Comment
     }
 
     /**
-     * Set created
+     * Set created.
      *
      * @param \DateTime $created
+     *
      * @return Comment
      */
     public function setCreated($created)
@@ -102,9 +102,9 @@ class Comment
     }
 
     /**
-     * Get created
+     * Get created.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -112,9 +112,10 @@ class Comment
     }
 
     /**
-     * Set updated
+     * Set updated.
      *
      * @param \DateTime $updated
+     *
      * @return Comment
      */
     public function setUpdated($updated)
@@ -125,9 +126,9 @@ class Comment
     }
 
     /**
-     * Get updated
+     * Get updated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -135,9 +136,10 @@ class Comment
     }
 
     /**
-     * Set article
+     * Set article.
      *
      * @param \ESGI\BlogBundle\Entity\Article $article
+     *
      * @return Comment
      */
     public function setArticle(\ESGI\BlogBundle\Entity\Article $article = null)
@@ -148,9 +150,9 @@ class Comment
     }
 
     /**
-     * Get article
+     * Get article.
      *
-     * @return \ESGI\BlogBundle\Entity\Article 
+     * @return \ESGI\BlogBundle\Entity\Article
      */
     public function getArticle()
     {
@@ -158,9 +160,10 @@ class Comment
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \ESGI\UserBundle\Entity\User $user
+     *
      * @return Comment
      */
     public function setUser(\ESGI\UserBundle\Entity\User $user)
@@ -171,9 +174,9 @@ class Comment
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \ESGI\UserBundle\Entity\User 
+     * @return \ESGI\UserBundle\Entity\User
      */
     public function getUser()
     {

@@ -1,0 +1,75 @@
+<h2>{% trans %}Inscrire un nouvel utilisateur{% endtrans %}</h2>
+<div class="well">
+    <form method="post">
+
+        {# Émail #}
+        <div class="form-group">
+            {# Génération du label. #}
+            {{ form_label(form.email, "Émail", {'label_attr': {'class': 'control-label'}}) }}
+            <br>
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.email) }}
+
+            <div class="col-sm-3">
+                {# Génération de l'input. #}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <br>
+        </div>
+
+        {# Nom Utilisateur #}
+        <div class="form-group">
+            {# Génération du label. #}
+            {{ form_label(form.username, "Nom Utilisateur", {'label_attr': {'class': 'control-label'}}) }}
+            <br>
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.username) }}
+
+            <div class="col-sm-3">
+                {# Génération de l'input. #}
+                {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <br>
+        </div>
+
+        {# Mot de passe #}
+        <div class="form-group">
+            {# Génération du label. #}
+            {{ form_label(form.plainPassword.first, "Mot de passe", {'label_attr': {'class': 'control-label'}}) }}
+            <br>
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.plainPassword.first) }}
+
+            <div class="col-sm-3">
+                {# Génération de l'input. #}
+                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <br>
+        </div>
+
+        {# Vérification #}
+        <div class="form-group">
+            {# Génération du label. #}
+            {{ form_label(form.plainPassword.second, "Vérification", {'label_attr': {'class': 'control-label'}}) }}
+            <br>
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.plainPassword.second) }}
+
+            <div class="col-sm-3">
+                {# Génération de l'input. #}
+                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <br>
+        </div>
+
+        {# Roles #}
+        {#<div class="form-group">
+            {{ form_row(form.roles) }}
+
+        </div>#}
+        <br>
+
+        {{ form_widget(form) }}
+        <input type="submit" class="btn btn-success" />
+    </form>
+</div>
