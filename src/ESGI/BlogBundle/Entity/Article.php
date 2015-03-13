@@ -370,10 +370,10 @@ class Article
     /**
      * Add comments
      *
-     * @param \ESGI\ESGIBlogBundle\Entity\Comment $comments
+     * @param \ESGI\BlogBundle\Entity\Comment $comments
      * @return Article
      */
-    public function addComment(\ESGI\ESGIBlogBundle\Entity\Comment $comments)
+    public function addComment(\ESGI\BlogBundle\Entity\Comment $comments)
     {
         $this->comments[] = $comments;
 
@@ -383,9 +383,9 @@ class Article
     /**
      * Remove comments
      *
-     * @param \ESGI\ESGIBlogBundle\Entity\Comment $comments
+     * @param \ESGI\BlogBundle\Entity\Comment $comments
      */
-    public function removeComment(\ESGI\ESGIBlogBundle\Entity\Comment $comments)
+    public function removeComment(\ESGI\BlogBundle\Entity\Comment $comments)
     {
         $this->comments->removeElement($comments);
     }
