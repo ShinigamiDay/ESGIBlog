@@ -9,13 +9,8 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class ArticleAdmin extends Admin
+class CommentAdmin extends Admin
 {
-    protected $securityContext;
-    public function setSecurityContext($securityContext)
-    {
-        $this->securityContext = $securityContext;
-    }
 
     // setup the default sort column and order
     protected $datagridValues = array(
@@ -26,14 +21,14 @@ class ArticleAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title')
-            ->add('body')
-            ->add('isPublished')
-            ->add('isCommented')
-            ->add('image', "sonata_type_model_list")
-            ->add('category', 'entity', array(
-                'class'    => 'ESGIBlogBundle:Category',
-                'property' => 'name',
+            ->add('content')
+            ->add('article', 'entity', array(
+                'class'    => 'ESGIBlogBundle:Article',
+                'property' => 'title',
+                'multiple' => false, ))
+            ->add('user', 'entity', array(
+                'class'    => 'ESGIUserBundle:User',
+                'property' => 'username',
                 'multiple' => false, ))
         ;
     }
@@ -41,23 +36,16 @@ class ArticleAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('title')
-            ->add('isPublished')
-            ->add('category')
+            ->add('article')
         ;
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title', null, array('global_search' => true))
-            ->add('isPublished', null, array("editable" => true))
+            ->addIdentifier('content')
+            ->add('article')
         ;
-    }
-
-    public function prePersist($article)
-    {
-        $article->setUser($this->securityContext->getToken()->getUser());
     }
 
     public function getBatchActions()
@@ -91,9 +79,9 @@ class ArticleAdmin extends Admin
         $nb = $em->getRepository('EnsJobeetBundle:Job')->cleanup(60);
 
         if ($nb) {
-            $this->get('session')->setFlash('sonata_flash_success',  sprintf('%d never activated jobs have been deleted successfully.', $nb));
+            $this->get('session')->setFlash('sonata_flash_success',  sprintf('%d never activated comment have been deleted successfully.', $nb));
         } else {
-            $this->get('session')->setFlash('sonata_flash_info',  'No job to delete.');
+            $this->get('session')->setFlash('sonata_flash_info',  'No comment to delete.');
         }
 
         return new RedirectResponse($this->admin->generateUrl('list', $this->admin->getFilterParameters()));

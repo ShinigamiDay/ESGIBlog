@@ -19,3 +19,15 @@ services:
               arguments: [null, ESGI\BlogBundle\Entity\Category, ESGIBlogBundle:CategoryAdmin]
               calls:
                   - [ setSecurityContext, [ @security.context ] ]
+     ESGI.BlogBundle.Admin.User:
+              class: ESGI\BlogBundle\Admin\UserAdmin
+              tags:
+                  - { name: sonata.admin, manager_type: orm, group: Gestion Des Utilisateurs, label: Utilisateur }
+              arguments: [null, ESGI\UserBundle\Entity\User, ESGIBlogBundle:UserAdmin]
+              calls:
+                  - [ setSecurityContext, [ @security.context ] ]
+     ESGI.BlogBundle.Admin.Comment:
+              class: ESGI\BlogBundle\Admin\CommentAdmin
+              tags:
+                  - { name: sonata.admin, manager_type: orm, group: Gestion Des Commentaires, label: Commentaires }
+              arguments: [null, ESGI\BlogBundle\Entity\Comment, ESGIBlogBundle:CommentAdmin]
