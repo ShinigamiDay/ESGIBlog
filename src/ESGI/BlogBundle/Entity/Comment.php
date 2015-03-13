@@ -3,6 +3,7 @@
 namespace ESGI\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ESGI\UserBundle\Entity\User;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -162,11 +163,11 @@ class Comment
     /**
      * Set user.
      *
-     * @param \ESGI\UserBundle\Entity\User $user
+     * @param User $user
      *
      * @return Comment
      */
-    public function setUser(\ESGI\UserBundle\Entity\User $user)
+    public function setUser(User $user)
     {
         $this->user = $user;
 
@@ -176,7 +177,7 @@ class Comment
     /**
      * Get user.
      *
-     * @return \ESGI\UserBundle\Entity\User
+     * @return User
      */
     public function getUser()
     {
