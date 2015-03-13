@@ -33,7 +33,7 @@ class ArticleControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/articles');
 
         //Retourne vrai
-        $this->assertEquals(1, $crawler->filter('h1:contains("Welcome to the Article:articles")')->count());
+        $this->assertEquals(1, $crawler->filter('a:contains("Toutes")')->count());
         //$this->assertTrue($crawler->filter('article')->count() > 0);
 
         //Retourne faux
