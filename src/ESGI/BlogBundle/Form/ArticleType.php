@@ -10,7 +10,7 @@ class ArticleType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -23,10 +23,10 @@ class ArticleType extends AbstractType
             ->add('category', 'entity', array(
                                                 'class'    => 'ESGIBlogBundle:Category',
                                                 'property' => 'name',
-                                                'multiple' => false))
+                                                'multiple' => false, ))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
@@ -34,7 +34,7 @@ class ArticleType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'ESGI\BlogBundle\Entity\Article',
-            'intention' => 'task_contenthsh'
+            'intention' => 'task_contenthsh',
         ));
     }
 

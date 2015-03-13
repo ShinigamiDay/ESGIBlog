@@ -2,27 +2,25 @@
 
 namespace ESGI\BlogBundle\Admin;
 
-use ESGI\BlogBundle\Form\ImageType;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ArticleAdmin extends Admin
 {
-
     protected $securityContext;
-    public function setSecurityContext($securityContext) {
+    public function setSecurityContext($securityContext)
+    {
         $this->securityContext = $securityContext;
     }
 
     // setup the default sort column and order
     protected $datagridValues = array(
         '_sort_order' => 'ASC',
-        '_sort_by' => 'title'
+        '_sort_by' => 'title',
     );
 
     protected function configureFormFields(FormMapper $formMapper)
@@ -35,7 +33,7 @@ class ArticleAdmin extends Admin
             ->add('category', 'entity', array(
                 'class'    => 'ESGIBlogBundle:Category',
                 'property' => 'name',
-                'multiple' => false))
+                'multiple' => false, ))
         ;
     }
 
@@ -67,15 +65,15 @@ class ArticleAdmin extends Admin
         $actions = parent::getBatchActions();
 
         // check user permissions
-        if($this->hasRoute('edit') && $this->isGranted('EDIT') && $this->hasRoute('delete') && $this->isGranted('DELETE')){
+        if ($this->hasRoute('edit') && $this->isGranted('EDIT') && $this->hasRoute('delete') && $this->isGranted('DELETE')) {
             $actions['extend'] = array(
                 'label'            => 'Extend',
-                'ask_confirmation' => true // If true, a confirmation will be asked before performing the action
+                'ask_confirmation' => true, // If true, a confirmation will be asked before performing the action
             );
 
             $actions['deleteNeverActivated'] = array(
                 'label'            => 'Delete never activated jobs',
-                'ask_confirmation' => true // If true, a confirmation will be asked before performing the action
+                'ask_confirmation' => true, // If true, a confirmation will be asked before performing the action
             );
         }
 
@@ -102,7 +100,6 @@ class ArticleAdmin extends Admin
             $this->get('session')->setFlash('sonata_flash_info',  'No job to delete.');
         }
 
-        return new RedirectResponse($this->admin->generateUrl('list',$this->admin->getFilterParameters()));
+        return new RedirectResponse($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
     }
-
 }

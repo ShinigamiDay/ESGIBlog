@@ -7,7 +7,7 @@ use ESGI\UserBundle\Entity\User;
 
 class AddCategoryFixtures implements FixtureInterface
 {
-    function load(ObjectManager $manager)
+    public function load(ObjectManager $manager)
     {
         $i = 1;
         /* Création d'un user obligatoire qui va être lié aux articles */
@@ -32,5 +32,4 @@ class AddCategoryFixtures implements FixtureInterface
 
         $manager->flush();
     }
-
 }

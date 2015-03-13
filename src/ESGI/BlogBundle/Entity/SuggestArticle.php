@@ -5,7 +5,7 @@ namespace ESGI\BlogBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * SuggestArticle
+ * SuggestArticle.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -42,22 +42,21 @@ class SuggestArticle
      */
     private $category;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
 
-
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
+     *
      * @return Article
      */
     public function setTitle($title)
@@ -68,7 +67,7 @@ class SuggestArticle
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -78,9 +77,10 @@ class SuggestArticle
     }
 
     /**
-     * Set body
+     * Set body.
      *
      * @param string $body
+     *
      * @return Article
      */
     public function setBody($body)
@@ -91,7 +91,7 @@ class SuggestArticle
     }
 
     /**
-     * Get body
+     * Get body.
      *
      * @return string
      */
@@ -101,9 +101,10 @@ class SuggestArticle
     }
 
     /**
-     * Set category
+     * Set category.
      *
      * @param \ESGI\BlogBundle\Entity\Category $category
+     *
      * @return Category
      */
     public function setCategory(Category $category = null)
@@ -114,7 +115,7 @@ class SuggestArticle
     }
 
     /**
-     * Get category
+     * Get category.
      *
      * @return \ESGI\BlogBundle\Entity\Category
      */
