@@ -10,9 +10,6 @@ class ArticleControllerTest extends WebTestCase
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/add');
-
-        //$form = $crawler->selectButton('Valider')->form();
-
     }
 
     public function testSee()
@@ -37,6 +34,7 @@ class ArticleControllerTest extends WebTestCase
 
         //Retourne vrai
         $this->assertEquals(1, $crawler->filter('h1:contains("Welcome to the Article:articles")')->count());
+        //$this->assertTrue($crawler->filter('article')->count() > 0);
 
         //Retourne faux
         //$this->assertEquals(1, $crawler->filter('h1:contains("Pingouin et chat")')->count());

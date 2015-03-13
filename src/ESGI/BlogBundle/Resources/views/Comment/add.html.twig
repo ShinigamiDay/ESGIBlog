@@ -2,6 +2,19 @@
 {% block title %}{{ 'Commentaire'|trans }}{% endblock %}
 
 {% block blog_body %}
-    <h1>Welcome to the Comment form page</h1>
+ <header class="intro-header" style="background-image: url({{ asset('img/home-bg.jpg') }})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h2>Ajouter un commentaire</h2>
+                        <hr class="small">
+                        <span class="subheading"><i></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class = "container">
     {% include "ESGIBlogBundle:Comment:form.html.twig" %}
 {% endblock %}
