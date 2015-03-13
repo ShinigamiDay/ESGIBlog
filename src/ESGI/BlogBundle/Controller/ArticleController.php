@@ -14,7 +14,7 @@ class ArticleController extends FOSRestController
     public function addAction()
     {
         $article = new Article();
-
+        $categories = $this->getDoctrine()->getManager()->getRepository("ESGIBlogBundle:Category")->findAll();
         // On crée le FormBuilder grâce à la méthode du contrôleur
         $form = $this->createForm(new ArticleType(), $article);
 
@@ -41,23 +41,28 @@ class ArticleController extends FOSRestController
 
         return $this->render('ESGIBlogBundle:Article:add.html.twig', array(
             'form' => $form->createView(),
+            'categories' => $categories,
         ));
     }
 
     public function seeAction(Article $article)
     {
+        $categories = $this->getDoctrine()->getManager()->getRepository("ESGIBlogBundle:Category")->findAll();
         // Récupération du menu choisi.
         $em = $this->getDoctrine()->getManager();
         $article = $em->getRepository('ESGIBlogBundle:Article')
                     ->find($article->getId());
 
         return $this->render('ESGIBlogBundle:Article:see.html.twig', array(
-                'article' => $article,
+                'article' => $article, 
+                'categories' => $categories,
+
         ));
     }
 
     public function deleteAction(Article $article)
     {
+        $categories = $this->getDoctrine()->getManager()->getRepository("ESGIBlogBundle:Category")->findAll();
         $form = $this->createFormBuilder()->getForm();
 
         $request = $this->get('request');
@@ -83,6 +88,7 @@ class ArticleController extends FOSRestController
         return $this->render('ESGIBlogBundle:Article:delete.html.twig', array(
                 'article' => $article,
                 'form'    => $form->createView(),
+                'categories' => $categories,
             ));
     }
 
@@ -144,6 +150,7 @@ class ArticleController extends FOSRestController
             'articles' => $articles,
             'page' => $page,
             'numberPage' => ceil(count($articles) / $numberContentsByPage),
+            'categories' => $categories,
         ));
     }
 
@@ -175,6 +182,7 @@ class ArticleController extends FOSRestController
 
         return $this->render('ESGIBlogBundle:Article:addSuggestArticle.html.twig', array(
             'form' => $form->createView(),
+            'categories' => $categories,
         ));
     }
 
@@ -206,6 +214,7 @@ class ArticleController extends FOSRestController
         return $this->render('ESGIBlogBundle:Article:edit.html.twig', array(
             'article' => $article,
             'form'    => $form->createView(),
+            'categories' => $categories,
         ));
     }
 

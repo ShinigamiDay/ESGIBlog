@@ -254,4 +254,8 @@ class Image
     {
         return $this->articles;
     }
+
+    public function __toString() {
+        return $this->getPath();
+    }
 }

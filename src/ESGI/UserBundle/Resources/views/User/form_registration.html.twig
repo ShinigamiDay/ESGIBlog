@@ -1,23 +1,13 @@
-<h2>{% trans %}Inscrire un nouvel utilisateur{% endtrans %}</h2>
-<div class="well">
+
+  
+
+
+    <div class="well">
     <form method="post">
+    
+    <h1>toto</h1>
 
-        {# Émail #}
-        <div class="form-group">
-            {# Génération du label. #}
-            {{ form_label(form.email, "Émail", {'label_attr': {'class': 'control-label'}}) }}
-            <br>
-            {# Affichage des erreurs pour ce champ précis. #}
-            {{ form_errors(form.email) }}
-
-            <div class="col-sm-3">
-                {# Génération de l'input. #}
-                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
-            </div>
-            <br>
-        </div>
-
-        {# Nom Utilisateur #}
+      {# Nom Utilisateur #}
         <div class="form-group">
             {# Génération du label. #}
             {{ form_label(form.username, "Nom Utilisateur", {'label_attr': {'class': 'control-label'}}) }}
@@ -32,6 +22,25 @@
             <br>
         </div>
 
+        {# Émail #}
+        <div class="form-group">
+            {# Génération du label. #}
+             <div class="col-sm-3">
+            {{ form_label(form.email, "Émail", {'label_attr': {'class': 'label'}}) }}
+            </div>
+             <div class="col-sm-3">
+                {# Génération de l'input. #}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <br>
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.email) }}
+
+           
+            <br>
+        </div>
+
+      
         {# Mot de passe #}
         <div class="form-group">
             {# Génération du label. #}

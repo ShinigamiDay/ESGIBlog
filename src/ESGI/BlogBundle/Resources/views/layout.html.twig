@@ -1,6 +1,20 @@
 {% extends '::base.html.twig' %}
+
+
 {% block title %}Blog Parfait{% endblock %}
 
+{% block bockcategories %}
+ <li class="dropdown" style = "background: transparent">
+                      <a href="{{ path('articles', {'id': 0}) }}" style = "background: transparent" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories<span class="caret"></span></a>
+
+                      <ul style = "border-color:black; background-color: white; color:black" class="dropdown-menu mondropdown" role="menu">
+                        {% for category in categories %}
+                            <li style = "height: 40px; background-color: white; color:black"><a  style = "background-color: white; color:black" href="{{ path('articles', {'id': category.id}) }}">{{ category.name }}</a></li>
+                            {% endfor %}
+                        
+                      </ul>
+                    </li>
+ {% endblock %}   
 
 {% block body %}
 
@@ -15,4 +29,5 @@
 
     {% block blog_body %}
     {% endblock %}
+    
 {% endblock %}

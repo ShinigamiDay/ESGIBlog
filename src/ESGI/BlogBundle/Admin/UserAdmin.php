@@ -9,7 +9,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class ArticleAdmin extends Admin
+class UserAdmin extends Admin
 {
     protected $securityContext;
     public function setSecurityContext($securityContext)
@@ -26,43 +26,26 @@ class ArticleAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title')
-            ->add('body', 'textarea', array(
-                'attr' => array(
-                    'class' => 'tinymce',
-                    'data-theme' => 'bbcode' // Skip it if you want to use default theme
-                )
-            ))
-            ->add('isPublished')
-            ->add('isCommented')
-            ->add('image', "sonata_type_model_list")
-            ->add('category', 'entity', array(
-                'class'    => 'ESGIBlogBundle:Category',
-                'property' => 'name',
-                'multiple' => false, ))
+            ->add('username')
+            ->add('email', 'email')
+            ->add('password', 'password')
         ;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('title')
-            ->add('isPublished')
-            ->add('category')
+            ->add('username')
+            ->add('email')
         ;
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title', null, array('global_search' => true))
-            ->add('isPublished', null, array("editable" => true))
+            ->add('username')
+            ->add('email')
         ;
-    }
-
-    public function prePersist($article)
-    {
-        $article->setUser($this->securityContext->getToken()->getUser());
     }
 
     public function getBatchActions()
@@ -74,6 +57,11 @@ class ArticleAdmin extends Admin
         if ($this->hasRoute('edit') && $this->isGranted('EDIT') && $this->hasRoute('delete') && $this->isGranted('DELETE')) {
             $actions['extend'] = array(
                 'label'            => 'Extend',
+                'ask_confirmation' => true, // If true, a confirmation will be asked before performing the action
+            );
+
+            $actions['deleteNeverActivated'] = array(
+                'label'            => 'Delete never activated jobs',
                 'ask_confirmation' => true, // If true, a confirmation will be asked before performing the action
             );
         }

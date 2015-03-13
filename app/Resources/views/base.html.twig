@@ -10,8 +10,7 @@
     </head>
 
     <body>
-       
-           <!-- Navigation -->
+
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -26,35 +25,38 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav">
                     <li>
                         <a href="index.html">Accueil</a>
                     </li>
-                    <li>
-                        <a href="about.html">Catégories</a>
-                    </li>
+                         {% block bockcategories %}
+           
+        {% endblock %}
+                   
+              
                     <li>
                         <a href="contact.html">Contact</a>
                     </li>
                     <li>
-                      <form class="navbar-form navbar-left" role="connexion">
-        <div class="form-group">
-         
-          <input type="text" style ="background: transparent; color: white" class="form-control"> </input>
-        
-        </div>
-        <button type="submit" style = "background: none; color: white; border: none">Rechercher</button>
-      </form>
-  </li>
-                    <li>
-       <form class="navbar-form navbar-left" role="connexion">
-        <div class="form-group">
-          <input type="text" style ="background: transparent; color: white"class="form-control" placeholder="Login">
-          <input type="text" style ="background: transparent; color: white" class="form-control" placeholder="Mot de passe">
-        </div>
-        <button type="submit" style = "background: none; color: white; border: none">Connexion</button>
-      </form>
-  </li>
+                    
+                    <form method="post" action="{{ path('article_search') }}" class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="{{'Rechercher'|trans}}" name="key" size="40">
+                            <button type="submit" class="btnt" style = "background: transparent; border: none"><span class="glyphicon glyphicon-search"></button>
+                        </div>
+                    </form>
+                      </li>
+
+                      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                             <li>
+                                <a href="login">Connexion</a>
+                            </li>
+                        {% else %}
+                           <li>
+                                <a href="login">Deconnexion</a>
+                            </li>
+                        {% endif %}
+             
                 </ul>
               
             </div>
@@ -84,6 +86,10 @@
  * Copyright 2014 Start Bootstrap
  * Licensed under Apache 2.0 (https://github.com/IronSummitMedia/startbootstrap/blob/gh-pages/LICENSE)
  */
+.mondropdown :hover
+{
+background-color: transparent !important;
+}
 
 body {
   font-family: 'Lora', 'Times New Roman', serif;

@@ -2,20 +2,12 @@
 
 {% block title %}ESGIBlogBundle:Article:articles{% endblock %}
 
-{% block body %}
+{% block blog_body %}
 
 
-    <h3><a href="{{ path('articles', {'id': 0}) }}">{{ 'Toutes'|trans }}</a></h3>
-    {% for category in categories %}
-        <h3><a href="{{ path('articles', {'id': category.id}) }}">{{ category.name }}</a></h3>
-    {% endfor %}
+  
 
-    {# Formulaire de Recherche #}
-    <div class="row content-search">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            {% include "ESGIBlogBundle:Article:search.html.twig" %}
-        </div>
-    </div>
+
 
     {# Afficher les contenus #}
         <header class="intro-header" style="background-image: url({{ asset('img/home-bg.jpg') }})">
@@ -32,6 +24,7 @@
         </div>
     </header>
     <div class = "container">
+    
    
     
      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -45,7 +38,7 @@
                         </h2>
                        
                     </a>
-                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 24, 2014</p>
+                    <p class="post-meta">Posted by {{ article.user.username }} on September 24, 2014</p>
                 </div>
             </div>
         {% else %}

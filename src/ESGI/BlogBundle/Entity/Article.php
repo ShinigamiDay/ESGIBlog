@@ -75,7 +75,8 @@ class Article
 
     /**
      * @var Image
-     * @ORM\ManyToOne(targetEntity="ESGI\BlogBundle\Entity\Image", cascade={"persist", "remove"}, inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="ESGI\BlogBundle\Entity\Image", inversedBy="articles")
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id", onDelete="SET NULL")
      * @Assert\Valid()
      * @Expose
      */
@@ -407,5 +408,9 @@ class Article
     public function getComments()
     {
         return $this->comments;
+    }
+
+    public function __toString() {
+        return $this->getTitle();
     }
 }
