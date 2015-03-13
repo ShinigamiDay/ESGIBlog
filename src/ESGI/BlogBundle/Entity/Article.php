@@ -378,12 +378,7 @@ class Article
     /**
      * Add comments.
      *
-<<<<<<< HEAD
      * @param \ESGI\BlogBundle\Entity\Comment $comments
-=======
-     * @param \ESGI\ESGIBlogBundle\Entity\Comment $comments
-     *
->>>>>>> origin/master
      * @return Article
      */
     public function addComment(\ESGI\BlogBundle\Entity\Comment $comments)

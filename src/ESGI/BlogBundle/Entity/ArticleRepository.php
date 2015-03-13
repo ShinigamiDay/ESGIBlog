@@ -35,4 +35,29 @@ class ArticleRepository extends EntityRepository
 
         return new Paginator($query);
     }
+
+    public function getArticlesPublishedCategory($numberByPage, $page, $category)
+    {
+        if ($page < 1) {
+            throw new \InvalidArgumentException('L\'argument $page ne peut être inférieur à 1 (valeur : "'.$page.'").');
+        }
+
+        $isPublished = 1;
+        $query = $this->createQueryBuilder('a')
+            ->leftJoin('a.image', 'i')
+            ->addSelect('i')
+            ->orderBy('a.updated', 'DESC')
+            ->where('a.isPublished = :isPublished')
+            ->setParameter('isPublished', $isPublished)
+            ->andWhere('a.category = :category')
+            ->setParameter('category', $category)
+            ->getQuery();
+
+        // On définit le contenu à partir duquel commencer la liste
+        $query->setFirstResult(($page-1) * $numberByPage)
+            // Ainsi que le nombre de contenus à afficher
+            ->setMaxResults($numberByPage);
+
+        return new Paginator($query);
+    }
 }

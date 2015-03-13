@@ -3,21 +3,48 @@
 {% block title %}ESGIBlogBundle:Article:articles{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Article:articles page</h1>
+
+
+    <h3><a href="{{ path('articles', {'id': 0}) }}">{{ 'Toutes'|trans }}</a></h3>
+    {% for category in categories %}
+        <h3><a href="{{ path('articles', {'id': category.id}) }}">{{ category.name }}</a></h3>
+    {% endfor %}
+
     {# Afficher les contenus #}
-    <div class="row">
-        {% for article in articles %}
-            <div class="col-sm-4 col-md-4">
-                <div class="thumbnail">
-                    <img src="{{ asset(article.image.webPath) }}" alt=""/>
-                    <div class="caption">
-                        <h3><a href="{{ path('see', {'id': article.id}) }}">{{ article.title }}</a></h3>
+        <header class="intro-header" style="background-image: url({{ asset('img/home-bg.jpg') }})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>Blog Symfony</h1>
+                        <hr class="small">
+                        <span class="subheading">phrase d'accroche qui envoie du lourd</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class = "container">
+   
+    
+     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+              
+        {% for article in articles %}
+         <div class="row">
+              <div class="post-preview">
+                    <a href="post.html">
+                        <h2 class="post-title">
+                            <a href="{{ path('see', {'id': article.id}) }}">{{ article.title }}</a>
+                        </h2>
+                       
+                    </a>
+                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 24, 2014</p>
                 </div>
             </div>
         {% else %}
             <p>{{'Pas de contenus disponible.'|trans}}</p>
         {% endfor %}
+        </div>
     </div>
 
     {# Pagination #}
