@@ -13,7 +13,7 @@ use JMS\Serializer\Annotation\VirtualProperty;
  * Article.
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="ArticleRepository")
+ * @ORM\Entity(repositoryClass="ESGI\BlogBundle\Entity\ArticleRepository")
  * @ExclusionPolicy("all")
  */
 class Article
@@ -75,7 +75,7 @@ class Article
 
     /**
      * @var Image
-     * @ORM\ManyToOne(targetEntity="Image", cascade={"persist", "remove"}, inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="ESGI\BlogBundle\Entity\Image", cascade={"persist", "remove"}, inversedBy="articles")
      * @Assert\Valid()
      * @Expose
      */
@@ -83,7 +83,7 @@ class Article
 
     /**
      * @var Category
-     * @ORM\ManyToOne(targetEntity="Category", cascade={"persist"}, inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="ESGI\BlogBundle\Entity\Category", cascade={"persist"}, inversedBy="articles")
      * @Expose
      */
     private $category;
@@ -103,7 +103,7 @@ class Article
     private $isCommented;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", cascade={"persist", "remove"}, mappedBy="article")
+     * @ORM\OneToMany(targetEntity="ESGI\BlogBundle\Entity\Comment", cascade={"persist", "remove"}, mappedBy="article")
      * @Expose
      */
     private $comments;
@@ -204,11 +204,11 @@ class Article
     /**
      * Set image.
      *
-     * @param Image $image
+     * @param \ESGI\BlogBundle\Entity\Image $image
      *
      * @return Article
      */
-    public function setImage(Image $image = null)
+    public function setImage(\ESGI\BlogBundle\Entity\Image $image = null)
     {
         $this->image = $image;
 
@@ -218,7 +218,7 @@ class Article
     /**
      * Get image.
      *
-     * @return Image
+     * @return \ESGI\BlogBundle\Entity\Image
      * @VirtualProperty
      */
     public function getImage()
@@ -229,11 +229,11 @@ class Article
     /**
      * Set category.
      *
-     * @param Category $category
+     * @param \ESGI\BlogBundle\Entity\Category $category
      *
      * @return Category
      */
-    public function setCategory(Category $category = null)
+    public function setCategory(\ESGI\BlogBundle\Entity\Category $category = null)
     {
         $this->category = $category;
 
@@ -243,7 +243,7 @@ class Article
     /**
      * Get category.
      *
-     * @return Category
+     * @return \ESGI\BlogBundle\Entity\Category
      * @VirtualProperty
      */
     public function getCategory()
@@ -378,11 +378,15 @@ class Article
     /**
      * Add comments.
      *
-     * @param Comment $comments
+<<<<<<< HEAD
+     * @param \ESGI\BlogBundle\Entity\Comment $comments
+=======
+     * @param \ESGI\ESGIBlogBundle\Entity\Comment $comments
      *
+>>>>>>> origin/master
      * @return Article
      */
-    public function addComment(Comment $comments)
+    public function addComment(\ESGI\BlogBundle\Entity\Comment $comments)
     {
         $this->comments[] = $comments;
 
@@ -392,9 +396,9 @@ class Article
     /**
      * Remove comments.
      *
-     * @param Comment $comments
+     * @param \ESGI\BlogBundle\Entity\Comment $comments
      */
-    public function removeComment(Comment $comments)
+    public function removeComment(\ESGI\BlogBundle\Entity\Comment $comments)
     {
         $this->comments->removeElement($comments);
     }

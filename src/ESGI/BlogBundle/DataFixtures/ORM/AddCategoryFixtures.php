@@ -1,35 +1,39 @@
 <?php
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+namespace ESGI\BlogBundle\DataFixtures\ORM;
+
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use ESGI\BlogBundle\Entity\Category;
-use ESGI\UserBundle\Entity\User;
 
-class AddCategoryFixtures implements FixtureInterface
+class AddCategoryFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
         $i = 1;
-        /* Création d'un user obligatoire qui va être lié aux articles */
-        $user = new User();
-        $user->setUsername('User n°');
-        $user->setUsernameCanonical('nikosm');
-        $user->setEmail('nicolas@gmail.com');
-        $user->setEmailCanonical('nicolas@gmail.com');
-        $user->setEnabled(true);
-        $user->setPassword('nicola');
-        $user->setLocked(false);
-        $manager->persist($user);
-        $manager->flush();
 
         while ($i <= 10) {
+            $rand = rand(1, 10);
             $category = new Category();
             $category->setName('Category n°'.$i);
-            $category->setUser($user);
+            $category->setUser(
+                $this->getReference('user-' . $rand)
+            );
             $manager->persist($category);
+            $this->addReference('category-' . $i, $category);
             $i++;
         }
 
         $manager->flush();
     }
+<<<<<<< HEAD
+
+    public function getOrder()
+    {
+        return 3;
+    }
 }
+=======
+}
+>>>>>>> origin/master
