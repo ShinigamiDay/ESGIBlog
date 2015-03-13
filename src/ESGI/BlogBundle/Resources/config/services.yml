@@ -1,27 +1,21 @@
 services:
-#    esgi_blog.example:
-#        class: ESGI\BlogBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
-#
-     esgi_computer:
-         class: ESGI\BlogBundle\Service\Computer
 
      ESGI.BlogBundle.Admin.Article:
          class: ESGI\BlogBundle\Admin\ArticleAdmin
          tags:
-             - { name: sonata.admin, manager_type: orm, group: esgi_blog, label: Articles }
+             - { name: sonata.admin, manager_type: orm, group: Gestion Des Articles, label: Articles }
          arguments: [null, ESGI\BlogBundle\Entity\Article, ESGIBlogBundle:ArticleAdmin]
          calls:
              - [ setSecurityContext, [ @security.context ] ]
      ESGI.BlogBundle.Admin.Image:
               class: ESGI\BlogBundle\Admin\ImageAdmin
               tags:
-                  - { name: sonata.admin, manager_type: orm, group: esgi_blog, label: Image }
+                  - { name: sonata.admin, manager_type: orm, group: Gestion Des Articles, label: Image }
               arguments: [null, ESGI\BlogBundle\Entity\Image, ESGIBlogBundle:ImageAdmin]
      ESGI.BlogBundle.Admin.Category:
               class: ESGI\BlogBundle\Admin\CategoryAdmin
               tags:
-                  - { name: sonata.admin, manager_type: orm, group: esgi_blog, label: Categorie }
+                  - { name: sonata.admin, manager_type: orm, group: Gestion Des Articles, label: Categorie }
               arguments: [null, ESGI\BlogBundle\Entity\Category, ESGIBlogBundle:CategoryAdmin]
               calls:
                   - [ setSecurityContext, [ @security.context ] ]

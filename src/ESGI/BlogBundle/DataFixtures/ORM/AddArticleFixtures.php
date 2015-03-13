@@ -20,12 +20,19 @@ class AddArticleFixtures extends AbstractFixture implements OrderedFixtureInterf
             $article->setUser(
                 $this->getReference('user-'.$rand)
             );
-            $article->setBody("Article n°".$i);
-            $article->setCategory(null);
+            $article->setBody("Article n°" . $i);
+            $article->setCategory(
+                $this->getReference('category-' . $rand)
+            );
+
             $article->setIsPublished(true);
             $article->setTitle('Titre n°'.$i);
+            $article->setImage(
+                $this->getReference('img')
+            );
 
             $manager->persist($article);
+            $this->addReference('article-' . $i, $article);
             $i++;
         }
 
@@ -34,6 +41,6 @@ class AddArticleFixtures extends AbstractFixture implements OrderedFixtureInterf
 
     public function getOrder()
     {
-        return 3;
+        return 4;
     }
 }
