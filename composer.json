@@ -28,7 +28,8 @@
         "sonata-project/doctrine-orm-admin-bundle": "~2.3",
         "sonata-project/easy-extends-bundle": "~2.1",
         "friendsofsymfony/rest-bundle": "~1.5",
-        "jms/serializer-bundle": "0.13.*"
+        "jms/serializer-bundle": "0.13.*",
+        "nelmio/api-doc-bundle": "~2.8"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

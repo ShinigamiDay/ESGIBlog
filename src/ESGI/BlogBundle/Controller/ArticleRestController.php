@@ -9,12 +9,22 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use JMS\SerializerBundle\JMSSerializerBundle;
 use ESGI\BlogBundle\Entity\Article;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class ArticleRestController extends FOSRestController
 {
 
     /**
      * Fetch all articles published.
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Fetch all articles published.",
+     *  filters={
+     *      {"name"="a-filter", "dataType"="integer"},
+     *      {"name"="another-filter", "dataType"="string", "pattern"="(foo|bar) ASC|DESC"}
+     *  }
+     * )
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function getArticlesAction()
@@ -37,7 +47,12 @@ class ArticleRestController extends FOSRestController
     }
 
     /**
-     * Add Article.
+     * Create a new Article.
+     * @ApiDoc(
+     *  description="Create a new Article",
+     *  input="ESGI\BlogBundle\Form\Type\ArticleType",
+     *  output="ESGI\BlogBundle\Article"
+     * )
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function postArticlesAction()
@@ -79,6 +94,15 @@ class ArticleRestController extends FOSRestController
         return $this->handleView($view);
     }
 
+    /**
+     * @ApiDoc(
+     *  description="Create a new Article",
+     *  input="ESGI\BlogBundle\Form\Type\ArticleType",
+     *  output="ESGI\BlogBundle\Article"
+     * )
+     * @param Article $article
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function putArticleAction(Article $article)
     {
 

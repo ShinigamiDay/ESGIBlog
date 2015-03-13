@@ -35,6 +35,11 @@ class User extends BaseUser
      */
     private $categories;
 
+    /**
+     * @ORM\OneToMany(targetEntity="ESGI\BlogBundle\Entity\Comment", cascade={"persist"}, mappedBy="user")
+     */
+    private $comments;
+
     public function __construct()
     {
         parent::__construct();
@@ -117,5 +122,38 @@ class User extends BaseUser
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \ESGI\BlogBundle\Entity\Comment $comments
+     * @return User
+     */
+    public function addComment(\ESGI\BlogBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \ESGI\BlogBundle\Entity\Comment $comments
+     */
+    public function removeComment(\ESGI\BlogBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }
